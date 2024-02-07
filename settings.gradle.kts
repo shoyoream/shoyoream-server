@@ -1,3 +1,6 @@
 rootProject.name = "shoyoream-application"
 include("core")
-include("api")
+include("product-application")
+include("order-application")
+include("payment-application")
+include("shipping-application")
