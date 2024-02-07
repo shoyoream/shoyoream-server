@@ -1,11 +1,11 @@
-name: CONTINUOUS INTEGRATION
+name: Gradle Build Continuous Integration
 
 on:
     pull_request:
         branches: [ main, develop ]
 
 jobs:
-    CI:
+    gradle-build:
         runs-on: ubuntu-latest
 
         steps:

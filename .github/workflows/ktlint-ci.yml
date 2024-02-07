@@ -1,4 +1,4 @@
-name: Lint CI
+name: Ktlint Continuous Integration
 
 on:
     push:
@@ -7,7 +7,7 @@ on:
         branches: [ develop, main ]
 
 jobs:
-    build:
+    lint:
         runs-on: ubuntu-latest
 
         steps:
