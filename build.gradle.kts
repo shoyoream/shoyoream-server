@@ -37,8 +37,6 @@ subprojects {
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        implementation("org.springframework.boot:spring-boot-starter-data-redis")
-//        implementation("org.springframework.boot:spring-boot-starter-security")
         implementation("org.springframework.boot:spring-boot-starter-validation")
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -46,6 +44,14 @@ subprojects {
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+        implementation("org.springframework.kafka:spring-kafka")
+        implementation("org.apache.kafka:kafka-clients:2.5.0")
+
+        val jdslVersion = "2.2.1.RELEASE"
+        implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:$jdslVersion")
+        implementation("org.hibernate:hibernate-core:6.2.4.Final")
+        implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:$jdslVersion")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
@@ -83,9 +89,27 @@ project(":core") {
     bootJar.enabled = false
 }
 
-project(":api") {
+project(":product-application") {
     tasks.bootJar {
-        archiveFileName.set("feed.jar")
+        archiveFileName.set("product-application.jar")
+    }
+}
+
+project(":order-application") {
+    tasks.bootJar {
+        archiveFileName.set("order-application.jar")
+    }
+}
+
+project(":payment-application") {
+    tasks.bootJar {
+        archiveFileName.set("payment-application.jar")
+    }
+}
+
+project(":shipping-application") {
+    tasks.bootJar {
+        archiveFileName.set("shipping-application.jar")
     }
 }
 
