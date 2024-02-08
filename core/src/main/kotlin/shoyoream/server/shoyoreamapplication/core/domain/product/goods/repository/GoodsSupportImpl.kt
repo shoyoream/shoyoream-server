@@ -11,7 +11,7 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Go
 class GoodsSupportImpl(
     private val queryFactory: SpringDataQueryFactory
 ) : GoodsSupport {
-    override fun findGoodsById(id: UUID): Goods? {
+    override fun findGoodsByGoodsId(id: UUID): Goods? {
         return queryFactory.singleQuery {
             select(entity(Goods::class))
             from(entity(Goods::class))
