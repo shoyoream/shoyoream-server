@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.domain.brand.entity
+package shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -10,7 +10,7 @@ import org.hibernate.annotations.JdbcTypeCode
 import org.hibernate.type.SqlTypes
 import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
 import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
-import shoyoream.server.shoyoreamapplication.core.domain.product.entity.Product
+import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Goods
 
 @Entity
 @Table(name = "brands")
@@ -21,5 +21,5 @@ class Brand(
     val id: UUID = UUIDGenerator.randomUUID(),
 
     @OneToMany(mappedBy = "brand")
-    val products: MutableList<Product> = mutableListOf()
+    val goods: MutableList<Goods> = mutableListOf()
 ) : BaseTimeEntity()

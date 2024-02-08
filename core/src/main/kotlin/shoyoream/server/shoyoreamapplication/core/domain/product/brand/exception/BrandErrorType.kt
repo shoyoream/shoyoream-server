@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.domain.brand.exception
+package shoyoream.server.shoyoreamapplication.core.domain.product.brand.exception
 
 import shoyoream.server.shoyoreamapplication.core.common.exception.ErrorType
 

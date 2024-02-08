@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.domain.product.entity
+package shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
@@ -14,13 +14,13 @@ import org.hibernate.type.SqlTypes
 import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
 import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
 import java.util.UUID
-import shoyoream.server.shoyoreamapplication.core.domain.brand.entity.Brand
+import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 
 @Entity
-@Table(name = "products")
-class Product(
+@Table(name = "goods")
+class Goods(
     @Id
-    @Column(name = "products_id", columnDefinition = "VARCHAR(36)")
+    @Column(name = "goods_id", columnDefinition = "VARCHAR(36)")
     @JdbcTypeCode(SqlTypes.VARCHAR)
     val id: UUID = UUIDGenerator.randomUUID(),
 
