@@ -89,9 +89,9 @@ project(":core") {
     bootJar.enabled = false
 }
 
-project(":product-application") {
+project(":goods-application") {
     tasks.bootJar {
-        archiveFileName.set("product-application.jar")
+        archiveFileName.set("goods-application.jar")
     }
 }
 
