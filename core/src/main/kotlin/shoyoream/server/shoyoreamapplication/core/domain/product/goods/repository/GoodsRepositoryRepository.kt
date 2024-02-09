@@ -4,4 +4,4 @@ import org.springframework.data.jpa.repository.JpaRepository
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Goods
 import java.util.UUID
 
-interface GoodsRepository : JpaRepository<Goods, UUID>
+interface GoodsRepositoryRepository : JpaRepository<Goods, UUID>, GoodsRepositorySupport

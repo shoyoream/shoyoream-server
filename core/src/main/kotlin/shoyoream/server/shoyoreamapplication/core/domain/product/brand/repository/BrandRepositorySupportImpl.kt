@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 
 @Component
-class BrandSupportImpl(
+class BrandRepositorySupportImpl(
     private val queryFactory: SpringDataQueryFactory
-) : BrandSupport {
+) : BrandRepositorySupport {
     override fun findBrandByBrandId(id: UUID): Brand? {
         return queryFactory.singleQuery {
             select(entity(Brand::class))
