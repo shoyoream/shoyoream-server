@@ -3,6 +3,6 @@ package shoyoream.server.shoyoreamapplication.core.domain.product.goods.reposito
 import java.util.UUID
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Goods
 
-interface GoodsSupport {
+interface GoodsRepositorySupport {
     fun findGoodsByGoodsId(id: UUID): Goods?
 }

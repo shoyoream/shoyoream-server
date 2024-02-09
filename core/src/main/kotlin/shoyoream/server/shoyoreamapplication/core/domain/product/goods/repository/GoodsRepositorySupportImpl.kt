@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Goods
 
 @Component
-class GoodsSupportImpl(
+class GoodsRepositorySupportImpl(
     private val queryFactory: SpringDataQueryFactory
-) : GoodsSupport {
+) : GoodsRepositorySupport {
     override fun findGoodsByGoodsId(id: UUID): Goods? {
         return queryFactory.singleQuery {
             select(entity(Goods::class))

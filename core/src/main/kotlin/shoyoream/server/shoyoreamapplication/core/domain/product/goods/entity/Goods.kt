@@ -7,22 +7,29 @@ import jakarta.persistence.Column
 import jakarta.persistence.ConstraintMode
 import jakarta.persistence.FetchType
 import jakarta.persistence.ForeignKey
+import jakarta.persistence.GeneratedValue
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
-import org.hibernate.annotations.JdbcTypeCode
-import org.hibernate.type.SqlTypes
 import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
 import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
 import java.util.UUID
+import org.hibernate.annotations.GenericGenerator
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 
 @Entity
 @Table(name = "goods")
 class Goods(
     @Id
-    @Column(name = "goods_id", columnDefinition = "VARCHAR(36)")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    @Column(name = "goods_id")
     val id: UUID = UUIDGenerator.randomUUID(),
+
+    @Column(name = "goods_name")
+    val goodsName: String,
+
+    @Column(name = "goods_code")
+    val goodsCode: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brands_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
