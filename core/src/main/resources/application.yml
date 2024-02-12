@@ -29,6 +29,10 @@ spring:
         username: ${DATASOURCE_USERNAME}
         password: ${DATASOURCE_PASSWORD}
         driver-class-name: org.postgresql.Driver
+    kafka:
+        consumer:
+            bootstrap-servers: localhost:9092
+            group-id: group-1
     jpa:
         generate-ddl: true
         hibernate:
