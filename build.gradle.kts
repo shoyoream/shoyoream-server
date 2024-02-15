@@ -36,6 +36,7 @@ subprojects {
     java.sourceCompatibility = JavaVersion.VERSION_17
 
     dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-graphql")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("org.springframework.boot:spring-boot-starter-validation")
         implementation("org.springframework.boot:spring-boot-starter-web")
@@ -56,6 +57,16 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
         testImplementation("org.springframework.security:spring-security-test")
+
+        val kotestVersion = "4.6.0"
+        // mockk
+        testImplementation("io.mockk:mockk:1.9.3")
+        // kotest
+        testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+        testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+        testImplementation("io.kotest:kotest-property:$kotestVersion")
+        // kotest-extension-spring
+        testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
     }
 
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
