@@ -4,6 +4,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 plugins {
     id("org.springframework.boot") version "3.1.5"
     id("io.spring.dependency-management") version "1.1.3"
+    id("com.graphql_java_generator.graphql-gradle-plugin") version "1.18.6"
     kotlin("jvm") version "1.9.0"
     kotlin("plugin.spring") version "1.9.0"
     kotlin("plugin.jpa") version "1.9.0"
@@ -37,6 +38,7 @@ subprojects {
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-graphql")
+        implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:13.0.1")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("org.springframework.boot:spring-boot-starter-validation")
         implementation("org.springframework.boot:spring-boot-starter-web")

@@ -26,4 +26,12 @@ class Brand(
 
     @OneToMany(mappedBy = "brand")
     val goods: MutableList<Goods> = mutableListOf()
-) : BaseTimeEntity()
+) : BaseTimeEntity() {
+    companion object {
+        fun from(brandName: String): Brand {
+            return Brand(
+                brandName = brandName
+            )
+        }
+    }
+}
