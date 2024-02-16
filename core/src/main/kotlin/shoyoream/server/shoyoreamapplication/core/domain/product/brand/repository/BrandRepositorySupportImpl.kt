@@ -18,4 +18,12 @@ class BrandRepositorySupportImpl(
             where(col(Brand::id).equal(id))
         }
     }
+
+    override fun findBrandByBrandName(brandName: String): Brand? {
+        return queryFactory.singleQuery {
+            select(entity(Brand::class))
+            from(entity(Brand::class))
+            where(col(Brand::brandName).equal(brandName))
+        }
+    }
 }
