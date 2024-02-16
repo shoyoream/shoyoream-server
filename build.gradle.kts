@@ -54,7 +54,7 @@ subprojects {
         }
 
         val excludes = listOf(
-            "shoyoream/server/shoyoreamapplication/core/infra/config"
+            "shoyoream/server/shoyoreamapplication/core/infra/**"
         )
 
         classDirectories.setFrom(
@@ -99,14 +99,14 @@ subprojects {
 
                 // 커버리지 체크를 제외할 클래스들
                 excludes = listOf(
-                    "*.dto.*"
+                    "shoyoream/server/shoyoreamapplication/core/infra/**"
                 )
             }
         }
 
-        val excludes = listOf(
-            "shoyoream/server/shoyoreamapplication/core/infra/config"
-        )
+//        val excludes = listOf(
+//            "shoyoream/server/shoyoreamapplication/core/infra/**"
+//        )
 
         classDirectories.setFrom(
             sourceSets.main.get().output.asFileTree.matching { exclude(excludes) }
@@ -182,6 +182,7 @@ subprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+//        finalizedBy("jacocoTestReport")
     }
 }
 
