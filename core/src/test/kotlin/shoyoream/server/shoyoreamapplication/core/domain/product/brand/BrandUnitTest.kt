@@ -27,14 +27,4 @@ class BrandUnitTest : StringSpec({
 
         createdBrand shouldBe expectedBrand
     }
-
-    "브랜드 이름을 넣으면 해당 브랜드를 가져온다." {
-        val targetBrandName = "SHOYOROLL"
-        val targetBrand = Brand(brandName = targetBrandName)
-        every { brandRepository.findBrandByBrandName(any()) } returns targetBrand
-
-        val gotBrand = brandRepository.findBrandByBrandName(targetBrandName)
-
-        targetBrand.brandName shouldBe gotBrand!!.brandName
-    }
 })
