@@ -12,7 +12,7 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.B
 @SpringBootTest
 class BrandSelectionServiceTest : BehaviorSpec({
     val brandRepository: BrandRepository = mockk()
-    val brandSelectionService: BrandSelectionService = BrandSelectionService(brandRepository)
+    val brandSelectionService = BrandSelectionService(brandRepository)
 
     Given("특정 브랜드가 있는 경우") {
         val shoyorollName = "Shoyoroll"
