@@ -54,7 +54,10 @@ subprojects {
         }
 
         val excludes = listOf(
-            "shoyoream/server/shoyoreamapplication/core/infra/**"
+            "shoyoream/server/shoyoreamapplication/core/infra/**",
+            "shoyoream/server/shoyoreamapplication/core/common/**",
+            "shoyoream/server/shoyoreamapplication/core/domain/**/exception/**",
+            "shoyoream/server/shoyoreamapplication/core/domain/**/repository/**"
         )
 
         classDirectories.setFrom(
@@ -99,14 +102,13 @@ subprojects {
 
                 // 커버리지 체크를 제외할 클래스들
                 excludes = listOf(
-                    "shoyoream/server/shoyoreamapplication/core/infra/**"
+                    "shoyoream/server/shoyoreamapplication/core/infra/**",
+                    "shoyoream/server/shoyoreamapplication/core/common/**",
+                    "shoyoream/server/shoyoreamapplication/core/domain/**/exception/**",
+                    "shoyoream/server/shoyoreamapplication/core/domain/**/repository/**"
                 )
             }
         }
-
-//        val excludes = listOf(
-//            "shoyoream/server/shoyoreamapplication/core/infra/**"
-//        )
 
         classDirectories.setFrom(
             sourceSets.main.get().output.asFileTree.matching { exclude(excludes) }
