@@ -1,13 +1,13 @@
 ---
-name: "\b\U0001F6E0 FIX"
-about: "\bFix 요청 (버그 수정)"
-title: "[FIX]"
+name: "❗️ Hotfix"
+about: Hotfix 요청
+title: "[HOTFIX]"
 labels: ''
 assignees: ''
 
 ---
 
-FIx Description
+Description
 ---
 설명 작성
 
