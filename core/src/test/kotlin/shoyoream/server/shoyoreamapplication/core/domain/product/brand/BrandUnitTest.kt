@@ -19,15 +19,25 @@ val brandDomainService: BrandDomainService = BrandDomainService(brandRepository)
 
 @SpringBootTest
 class BrandUnitTest : StringSpec({
-    "브랜드 이름을 넣으면 새로운 브랜드가 리턴된다." {
+    "브랜드 이름을 넣으면 새로운 브랜드가 생성된다." {
         val newBrandName = "Test Brand Name"
         val expectedBrand = Brand(brandName = newBrandName)
-        every { brandRepository.save(any<Brand>()) } returns expectedBrand
+        every { brandRepository.save(any()) } returns expectedBrand
 
         val createdBrand = withContext(Dispatchers.IO) {
             brandDomainService.createNewBrand(newBrandName)
         }
 
         createdBrand shouldBe expectedBrand
+    }
+
+    "브랜드 이름을 넣으면 해당 브랜드를 가져온다." {
+        val targetBrandName = "SHOYOROLL"
+        val targetBrand = Brand(brandName = targetBrandName)
+        every { brandRepository.findBrandByBrandName(any()) } returns targetBrand
+
+        val gotBrand = brandRepository.findBrandByBrandName(targetBrandName)
+
+        targetBrand.brandName shouldBe gotBrand!!.brandName
     }
 })
