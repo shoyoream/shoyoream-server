@@ -5,4 +5,6 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Br
 
 interface BrandRepositorySupport {
     fun findBrandByBrandId(id: UUID): Brand?
+
+    fun findBrandByBrandName(brandName: String): Brand?
 }
