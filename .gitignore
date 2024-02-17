@@ -38,4 +38,4 @@ out/
 
 .env
 
-!**/resources/secure.properties
+core/src/main/resources/secure.properties
