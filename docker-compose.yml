@@ -17,21 +17,75 @@ services:
     product-application:
         container_name: product_application
         build:
-            context: .
+            context: ./
             dockerfile: Dockerfile
         env_file:
             -   .env
         ports:
-            -   "8090:8080"
+            - "8080:8081"
         environment:
             SPRING_DATASOURCE_URL: ${DATABASE_URL}
             SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
             SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
         command: bash -c "
-            ls -al
-            && ./gradlew :product-application:bootJar -Pprofile=local
-            && java -jar -Dspring.profiles.active=local ./build/libs/product-application.jar
+            java -jar -Dspring.profiles.active=local ./product-application/build/libs/product-application.jar
             "
         depends_on:
             -   database
 
+    order-application:
+        container_name: order_application
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        env_file:
+            - .env
+        ports:
+            - "8080:8082"
+        environment:
+            SPRING_DATASOURCE_URL: ${DATABASE_URL}
+            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
+            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
+        command: bash -c "
+            java -jar -Dspring.profiles.active=local ./order-application/build/libs/order-application.jar
+            "
+        depends_on:
+            - database
+
+    payment-application:
+        container_name: payment_application
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        env_file:
+            - .env
+        ports:
+            - "8080:8081"
+        environment:
+            SPRING_DATASOURCE_URL: ${DATABASE_URL}
+            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
+            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
+        command: bash -c "
+            java -jar -Dspring.profiles.active=local ./payment-application/build/libs/payment-application.jar
+            "
+        depends_on:
+            - database
+
+    shipping-application:
+        container_name: shipping_application
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        env_file:
+            - .env
+        ports:
+            - "8080:8081"
+        environment:
+            SPRING_DATASOURCE_URL: ${DATABASE_URL}
+            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
+            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
+        command: bash -c "
+            java -jar -Dspring.profiles.active=local ./shipping-application/build/libs/shipping-application.jar
+            "
+        depends_on:
+            - database
