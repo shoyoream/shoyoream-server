@@ -24,7 +24,7 @@ class BrandAdminAppService(
 
     @Transactional(readOnly = true)
     fun findBrandByBrandName(brandName: String): DefaultResponse<UUID> {
-        val targetBrand = brandSelectionService.findBrandByName(brandName)
+        val targetBrand = brandSelectionService.findBrandByBrandName(brandName)
             ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
 
         return DefaultResponse.response(

@@ -13,9 +13,4 @@ class BrandSelectionService(
     fun findBrandByBrandName(brandName: String): Brand? {
         return brandRepository.findBrandByBrandName(brandName)
     }
-
-    @Transactional(readOnly = true)
-    fun findBrandByName(name: String): Brand? {
-        return brandRepository.findBrandByNameName(name)
-    }
 }
