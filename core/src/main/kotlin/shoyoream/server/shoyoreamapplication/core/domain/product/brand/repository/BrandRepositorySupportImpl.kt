@@ -6,6 +6,7 @@ import com.linecorp.kotlinjdsl.spring.data.listQuery
 import java.util.*
 import org.springframework.stereotype.Component
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
+import shoyoream.server.shoyoreamapplication.core.infra.`kotlin-jdsl`.singleNullableQuery
 
 @Component
 class BrandRepositorySupportImpl(
@@ -25,5 +26,13 @@ class BrandRepositorySupportImpl(
             from(entity(Brand::class))
             where(col(Brand::brandName).equal(brandName))
         }.firstOrNull()
+    }
+
+    override fun findBrandByNameName(name: String): Brand? {
+        return queryFactory.singleNullableQuery {
+            select(entity(Brand::class))
+            from(entity(Brand::class))
+            where(col(Brand::brandName).equal(name))
+        }
     }
 }

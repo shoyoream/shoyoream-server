@@ -7,4 +7,6 @@ interface BrandRepositorySupport {
     fun findBrandByBrandId(id: UUID): Brand?
 
     fun findBrandByBrandName(brandName: String): Brand?
+
+    fun findBrandByNameName(name: String): Brand?
 }
