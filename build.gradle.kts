@@ -151,7 +151,6 @@ subprojects {
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
-        testImplementation("org.springframework.security:spring-security-test")
 
         val kotestVersion = "4.6.0"
         // mockk
