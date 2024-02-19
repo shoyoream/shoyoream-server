@@ -2,4 +2,3 @@ FROM openjdk:17-slim
 WORKDIR /app
 COPY .. /app
 RUN /app/gradlew :shipping-application:bootJar
-EXPOSE 8084
