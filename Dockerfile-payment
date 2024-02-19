@@ -1,0 +1,5 @@
+FROM openjdk:17-slim
+WORKDIR /app
+COPY .. /app
+RUN /app/gradlew :payment-application:bootJar
+EXPOSE 8083
