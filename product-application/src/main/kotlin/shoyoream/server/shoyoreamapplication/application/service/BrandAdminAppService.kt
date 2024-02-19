@@ -17,7 +17,7 @@ class BrandAdminAppService(
     @Transactional
     fun createNewBrand(brandName: String): DefaultResponse<UUID> {
         val newBrand = brandDomainService.createNewBrand(brandName)
-        return DefaultResponse(
+        return DefaultResponse.response(
             id = newBrand.id
         )
     }
@@ -27,7 +27,7 @@ class BrandAdminAppService(
         val targetBrand = brandSelectionService.findBrandByBrandName(brandName)
             ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
 
-        return DefaultResponse(
+        return DefaultResponse.response(
             id = targetBrand.id
         )
     }
