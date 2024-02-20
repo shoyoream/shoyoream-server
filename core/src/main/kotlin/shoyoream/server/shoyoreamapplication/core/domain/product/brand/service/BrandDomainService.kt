@@ -11,6 +11,6 @@ class BrandDomainService(
 ) {
     @Transactional
     fun createNewBrand(brandName: String): Brand {
-        return brandRepository.save(Brand.from(brandName))
+        return brandRepository.save(Brand.of(brandName))
     }
 }

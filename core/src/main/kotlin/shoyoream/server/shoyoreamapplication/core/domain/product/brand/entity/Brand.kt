@@ -28,7 +28,7 @@ class Brand(
     val goods: MutableList<Goods> = mutableListOf()
 ) : BaseTimeEntity() {
     companion object {
-        fun from(brandName: String): Brand {
+        fun of(brandName: String): Brand {
             return Brand(
                 brandName = brandName
             )

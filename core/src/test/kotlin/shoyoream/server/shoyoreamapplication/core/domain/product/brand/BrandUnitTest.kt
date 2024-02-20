@@ -13,7 +13,7 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.B
 
 @SpringBootTest
 class BrandUnitTest : StringSpec({
-    val brandRepository: BrandRepository = mockk()
+    val brandRepository: BrandRepository = mockk(relaxed = true)
     val brandDomainService = BrandDomainService(brandRepository)
 
     "브랜드 이름을 넣으면 새로운 브랜드가 생성된다." {
