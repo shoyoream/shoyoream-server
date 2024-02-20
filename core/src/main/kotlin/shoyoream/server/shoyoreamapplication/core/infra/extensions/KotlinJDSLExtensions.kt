@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.infra.dsl
+package shoyoream.server.shoyoreamapplication.core.infra.extensions
 
 import com.linecorp.kotlinjdsl.dsl.jpql.Jpql
 import com.linecorp.kotlinjdsl.querymodel.jpql.JpqlQueryable
