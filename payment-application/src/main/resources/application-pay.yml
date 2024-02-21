@@ -1,0 +1,22 @@
+pay:
+    kakao-pay:
+        authentication:
+            access-key: ''
+            secret-key: ''
+        host:
+            url: ''
+    naver-pay:
+        authentication:
+            access-key: ''
+            secret-key: ''
+        host:
+            url: ''
+    toss:
+        authentication:
+            access-key: ''
+            secret-key: ''
+        host:
+            url: ''
+    timeout:
+        read-time: 30000
+        connect-time: 30000
