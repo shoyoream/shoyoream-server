@@ -13,8 +13,8 @@ pay:
             url: ''
     toss-payments:
         authentication:
-            access-key: ''
-            secret-key: ''
+            access-key: ${toss-payments-client-key}
+            secret-key: ${toss-payments-secret-key}
         host:
             url: ''
     timeout:
