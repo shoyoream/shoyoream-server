@@ -4,14 +4,14 @@ pay:
             access-key: ''
             secret-key: ''
         host:
-            url: ''
+            url: open-api.kakaopay.com
     naver-pay:
         authentication:
             access-key: ''
             secret-key: ''
         host:
             url: ''
-    toss:
+    toss-payments:
         authentication:
             access-key: ''
             secret-key: ''

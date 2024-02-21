@@ -7,13 +7,13 @@ import shoyoream.server.shoyoreamapplication.core.infra.http.config.WebClientCon
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentProperty
 
 @Configuration
-class TossWebClientConfig(
+class TossPaymentsWebClientConfig(
     private val paymentProperty: PaymentProperty
 ) : WebClientConfig() {
     @Bean
-    fun tossWebClient(): WebClient {
+    fun tossPaymentsWebClient(): WebClient {
         return createWebClient(
-            baseUrl = paymentProperty.toss.host.url,
+            baseUrl = paymentProperty.tossPayments.host.url,
             readTimeout = paymentProperty.timeout.readTime,
             connectTimeout = paymentProperty.timeout.connectTime
         )

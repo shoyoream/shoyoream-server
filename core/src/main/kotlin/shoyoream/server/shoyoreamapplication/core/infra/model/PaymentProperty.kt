@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 class PaymentProperty(
     val kakaoPay: KakaoPay,
     val naverPay: NaverPay,
-    val toss: Toss,
+    val tossPayments: TossPayments,
     val timeout: Timeout
 ) {
     data class KakaoPay(
@@ -19,7 +19,7 @@ class PaymentProperty(
         val host: Host
     )
 
-    data class Toss(
+    data class TossPayments(
         val authentication: Authentication,
         val host: Host
     )
