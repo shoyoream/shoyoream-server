@@ -2,12 +2,19 @@ package shoyoream.server.shoyoreamapplication.application.client.service
 
 import java.util.UUID
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatusCode
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.bodyToMono
+import reactor.core.publisher.Mono
 import shoyoream.server.shoyoreamapplication.application.client.http.model.enumerations.PayGateway
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayRequest
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayResponse
+import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.request.TossPaymentsApproveRequest
+import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.response.TossPaymentsCommonObject
+import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.response.TossPaymentsErrorResponse
+import shoyoream.server.shoyoreamapplication.application.exception.PayException
 import shoyoream.server.shoyoreamapplication.core.common.utils.Base64UtilFunctions
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentProperty
 
@@ -24,7 +31,20 @@ class TossPaymentClient(
     override fun getPayGateway(): PayGateway = PayGateway.TOSS_PAYMENTS
 
     override fun request(payRequest: PayRequest): PayResponse {
-        TODO("Not yet implemented")
+        val tossPaymentsApproveRequest = payRequest as TossPaymentsApproveRequest
+
+        return tossPaymentsWebClient.post()
+            .uri(paymentProperty.tossPayments.endpoint.approve)
+            .headers { it.addAll(generateHeaders()) }
+            .bodyValue(tossPaymentsApproveRequest)
+            .retrieve()
+            .onStatus(HttpStatusCode::isError) { apiResponse ->
+                apiResponse
+                    .bodyToMono(TossPaymentsErrorResponse::class.java)
+                    .flatMap { error -> Mono.error(PayException(error)) }
+            }
+            .bodyToMono(TossPaymentsCommonObject::class.java)
+            .block()!!
     }
 
     private fun generateIdempotencyKeyHeaders(): HttpHeaders {

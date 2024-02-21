@@ -21,8 +21,13 @@ class PaymentProperty(
 
     data class TossPayments(
         val authentication: Authentication,
-        val host: Host
-    )
+        val host: Host,
+        val endpoint: Endpoint
+    ) {
+        data class Endpoint(
+            val approve: String
+        )
+    }
 
     data class Authentication(
         val accessKey: String,

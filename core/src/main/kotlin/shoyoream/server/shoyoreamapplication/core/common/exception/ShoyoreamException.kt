@@ -17,3 +17,6 @@ open class NotAllowedException(errorType: ErrorType) :
 
 open class ConflictException(errorType: ErrorType) :
     ShoyoreamException(errorType)
+
+open class WebClientException(detail: String) :
+    RuntimeException(detail)

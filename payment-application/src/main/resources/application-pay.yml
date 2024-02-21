@@ -16,7 +16,9 @@ pay:
             access-key: ${toss-payments-client-key}
             secret-key: ${toss-payments-secret-key}
         host:
-            url: ''
+            url: https://api.tosspayments.com
+        endpoint:
+            approve: /v1/payments/confirm
     timeout:
         read-time: 30000
         connect-time: 30000

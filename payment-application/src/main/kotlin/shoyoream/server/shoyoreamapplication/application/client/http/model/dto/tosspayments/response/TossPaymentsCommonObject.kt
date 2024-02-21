@@ -1,8 +1,9 @@
-package shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments
+package shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.response
 
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayResponse
+import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.TossPaymentsEnums
 
-data class TossPaymentsApproveObject(
+data class TossPaymentsCommonObject(
     val version: String,
     val paymentKey: String,
     val type: TossPaymentsEnums.PaymentType,
