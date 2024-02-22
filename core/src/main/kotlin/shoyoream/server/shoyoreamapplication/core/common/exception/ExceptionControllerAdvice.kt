@@ -46,6 +46,13 @@ class ExceptionControllerAdvice {
             HttpStatus.CONFLICT
         )
 
+    @ExceptionHandler(value = [PayErrorException::class])
+    fun payError(e: PayErrorException) =
+        ResponseEntity(
+            ErrorResponse(e.payError.toString()),
+            HttpStatus.BAD_REQUEST
+        )
+
     @ExceptionHandler(value = [Exception::class])
     fun exceptionHandle(ex: Exception, request: HttpServletRequest): ResponseEntity<ErrorResponse> {
         val clientInfo = "${request.remoteAddr} (${request.getHeader("user-agent")})"
