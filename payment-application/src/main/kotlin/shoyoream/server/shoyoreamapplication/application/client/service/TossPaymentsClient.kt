@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatusCode
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.reactive.function.client.bodyToMono
 import reactor.core.publisher.Mono
 import shoyoream.server.shoyoreamapplication.application.client.http.model.enumerations.PayGateway
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayRequest
@@ -19,7 +18,7 @@ import shoyoream.server.shoyoreamapplication.core.common.utils.Base64UtilFunctio
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentProperty
 
 @Component
-class TossPaymentClient(
+class TossPaymentsClient(
     private val tossPaymentsWebClient: WebClient,
     private val paymentProperty: PaymentProperty
 ) : PayClient {
