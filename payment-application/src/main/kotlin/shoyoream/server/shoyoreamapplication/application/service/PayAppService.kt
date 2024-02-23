@@ -13,5 +13,7 @@ class PayAppService(
     @Transactional
     fun pay(payGateway: PayGateway, payRequest: PayRequest) {
         val payClient = payClientStrategyService.findPayClientByPayGateway(payGateway)
+
+        val approveResponse = payClient.request(payRequest)
     }
 }
