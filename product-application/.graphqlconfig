@@ -1,0 +1,7 @@
+{
+    "name": "Product GraphQL Config",
+    "schemaPath": "src/main/resources/graphql/schema.graphqls",
+    "extensions": {
+
+    }
+}
