@@ -1,0 +1,31 @@
+spring:
+    mvc:
+        servlet:
+            load-on-startup: 1
+    config:
+        activate:
+            on-profile: local
+    batch:
+        jdbc:
+            initialize-schema: always
+        job:
+            enabled: false
+    datasource:
+        url: ${database-url}
+        username: ${database-username}
+        password: ${database-password}
+        driver-class-name: org.postgresql.Driver
+    kafka:
+        consumer:
+            bootstrap-servers: localhost:9092
+            group-id: group-1
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        open-in-view: false
+        properties:
+            hibernate:
+                format_sql: true
+                default_batch_fetch_size: 1000

@@ -1,3 +1,0 @@
-package shoyoream.server.shoyoreamapplication.core.domain.payment.repository
-
-interface PaymentRepositorySupport

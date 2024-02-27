@@ -144,10 +144,16 @@ subprojects {
         implementation("org.springframework.kafka:spring-kafka")
         implementation("org.apache.kafka:kafka-clients:2.5.0")
 
-        val jdslVersion = "2.2.1.RELEASE"
-        implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:$jdslVersion")
+//        val jdslVersion = "2.2.1.RELEASE"
+//        implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:$jdslVersion")
+//        implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:$jdslVersion")
+
         implementation("org.hibernate:hibernate-core:6.2.4.Final")
-        implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:$jdslVersion")
+
+        val kotlinJDSLVersion = "3.3.1"
+        implementation("com.linecorp.kotlin-jdsl:jpql-dsl:$kotlinJDSLVersion")
+        implementation("com.linecorp.kotlin-jdsl:jpql-render:$kotlinJDSLVersion")
+        implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:$kotlinJDSLVersion")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
