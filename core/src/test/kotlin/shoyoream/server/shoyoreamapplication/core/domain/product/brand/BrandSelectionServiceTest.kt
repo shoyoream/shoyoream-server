@@ -18,35 +18,37 @@ class BrandSelectionServiceTest : BehaviorSpec({
     val brandSelectionService = BrandSelectionService(brandRepository)
 
     Given("특정 브랜드가 있는 경우") {
-        val shoyorollName = "Shoyoroll"
-        val shoyoroll = Brand.of(brandName = shoyorollName)
+        val existBrandName = "Exist Brand"
+        val expectedBrand = Brand.of(brandName = existBrandName)
 
         every {
             brandRepository.findNullableSingle<Brand>(any())
-        } returns shoyoroll
+        } returns expectedBrand
 
         When("해당 브랜드 이름으로 조회하면") {
-            val gotShoyoroll = withContext(Dispatchers.IO) {
-                brandSelectionService.findBrandByBrandName(shoyorollName)
+            val gotBrand = withContext(Dispatchers.IO) {
+                brandSelectionService.findBrandByBrandName(existBrandName)
             }
 
-            Then("해당 브랜드가 조회 된다.") {
-                gotShoyoroll!!.brandName shouldBe shoyorollName
+            Then("해당 브랜드가 반환된다.") {
+                gotBrand shouldBe expectedBrand
             }
         }
     }
 
     Given("특정 브랜드가 없는 경우") {
-        val albinoName = "AP"
-        every { brandRepository.findNullableSingle<Brand>(any()) } returns null
+        val notExistBrandName = "Not Exist Brand"
+        every {
+            brandRepository.findNullableSingle<Brand>(any())
+        } returns null
 
         When("해당 브랜드 이름으로 조회하면") {
-            val albinoAndPreto = withContext(Dispatchers.IO) {
-                brandSelectionService.findBrandByBrandName(albinoName)
+            val gotBrand = withContext(Dispatchers.IO) {
+                brandSelectionService.findBrandByBrandName(notExistBrandName)
             }
 
             Then("null이 반환된다.") {
-                albinoAndPreto shouldBe null
+                gotBrand shouldBe null
             }
         }
     }

@@ -1,18 +1,4 @@
 spring:
-    main:
-        allow-bean-definition-overriding: true
-    profiles:
-        active: local
-        group:
-            local:
-    servlet:
-        multipart:
-            max-file-size: 1024MB
-            max-request-size: 1024MB
-
----
-
-spring:
     mvc:
         servlet:
             load-on-startup: 1
@@ -25,10 +11,14 @@ spring:
         job:
             enabled: false
     datasource:
-        url: ${{ secrets.DATASOURCE_URL }}
-        username: ${{ secrets.DATASOURCE_USERNAME }}
-        password: ${{ secrets.DATASOURCE_PASSWORD }}
+        url: ${database-url}
+        username: ${database-username}
+        password: ${database-password}
         driver-class-name: org.postgresql.Driver
+    kafka:
+        consumer:
+            bootstrap-servers: localhost:9092
+            group-id: group-1
     jpa:
         generate-ddl: true
         hibernate:

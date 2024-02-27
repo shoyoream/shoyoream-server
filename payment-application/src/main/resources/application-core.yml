@@ -1,24 +1,4 @@
 spring:
-    graphql:
-        graphiql:
-            enabled: true
-        schema:
-            locations: classpath:graphql/**/
-            file-extensions: .graphqls
-    main:
-        allow-bean-definition-overriding: true
-    profiles:
-        active: local
-        group:
-            local: product, order, payment, shipping, pay
-    servlet:
-        multipart:
-            max-file-size: 1024MB
-            max-request-size: 1024MB
-
----
-
-spring:
     mvc:
         servlet:
             load-on-startup: 1

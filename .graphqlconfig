@@ -1,7 +1,0 @@
-{
-    "name": "GraphQL Config",
-    "schemaPath": "core/src/main/resources/graphql/schema.graphqls",
-    "extensions": {
-
-    }
-}
