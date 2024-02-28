@@ -11,41 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class ExceptionControllerAdvice {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
-    @ExceptionHandler(value = [DataNotFoundException::class])
-    fun notFound(e: ShoyoreamException) =
-        ResponseEntity(
-            ErrorResponse(e.errorType.getErrorType()),
-            HttpStatus.NOT_FOUND
-        )
-
-    @ExceptionHandler(value = [UnauthorizedException::class])
-    fun unauthorized(e: ShoyoreamException) =
-        ResponseEntity(
-            ErrorResponse(e.errorType.getErrorType()),
-            HttpStatus.UNAUTHORIZED
-        )
-
-    @ExceptionHandler(value = [InvalidRequestException::class])
-    fun badRequest(e: ShoyoreamException) =
-        ResponseEntity(
-            ErrorResponse(e.errorType.getErrorType()),
-            HttpStatus.BAD_REQUEST
-        )
-
-    @ExceptionHandler(value = [NotAllowedException::class])
-    fun notAllowed(e: ShoyoreamException) =
-        ResponseEntity(
-            ErrorResponse(e.errorType.getErrorType()),
-            HttpStatus.FORBIDDEN
-        )
-
-    @ExceptionHandler(value = [ConflictException::class])
-    fun conflict(e: ShoyoreamException) =
-        ResponseEntity(
-            ErrorResponse(e.errorType.getErrorType()),
-            HttpStatus.CONFLICT
-        )
-
     @ExceptionHandler(value = [PayErrorException::class])
     fun payError(e: PayErrorException) =
         ResponseEntity(

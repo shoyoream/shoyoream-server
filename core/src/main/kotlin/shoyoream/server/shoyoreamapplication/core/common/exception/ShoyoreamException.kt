@@ -18,9 +18,6 @@ open class DataNotFoundException(errorType: ErrorType) :
 open class NotAllowedException(errorType: ErrorType) :
     ShoyoreamException(errorType)
 
-open class ConflictException(errorType: ErrorType) :
-    ShoyoreamException(errorType)
-
 open class PayErrorException(payError: PayError) :
     PayWebClientException(payError)
 
