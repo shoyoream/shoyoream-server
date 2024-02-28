@@ -11,16 +11,17 @@ import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
 import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
 
 @Entity
-@Table(name = "orders")
-class Order(
+@Table(name = "stocks")
+class Stocks(
     @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
-    @Column(name = "order_id")
+    @Column(name = "stocks_id")
     val id: UUID = UUIDGenerator.randomUUID(),
 
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "goods_id")
     val goodsId: UUID
+
 ) : BaseTimeEntity()
