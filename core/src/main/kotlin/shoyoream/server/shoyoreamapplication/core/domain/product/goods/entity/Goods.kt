@@ -5,6 +5,8 @@ import jakarta.persistence.Table
 import jakarta.persistence.Id
 import jakarta.persistence.Column
 import jakarta.persistence.ConstraintMode
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.ForeignKey
 import jakarta.persistence.GeneratedValue
@@ -31,7 +33,33 @@ class Goods(
     @Column(name = "goods_code")
     val goodsCode: String,
 
+    @Enumerated(EnumType.STRING)
+    val goodsType: GoodsType,
+
+    @Enumerated(EnumType.STRING)
+    val goodsSize: GoodsSize,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brands_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     val brand: Brand
-) : BaseTimeEntity()
+) : BaseTimeEntity() {
+    companion object {
+        fun of(
+            goodsName: String,
+            goodsCode: String,
+            goodsType: GoodsType,
+            goodsSize: GoodsSize,
+            brand: Brand
+        ): Goods {
+            return Goods(
+                goodsName = goodsName,
+                goodsCode = goodsCode,
+                goodsType = goodsType,
+                goodsSize = goodsSize,
+                brand = brand
+            )
+        }
+    }
+
+    // TODO : update domain logic
+}

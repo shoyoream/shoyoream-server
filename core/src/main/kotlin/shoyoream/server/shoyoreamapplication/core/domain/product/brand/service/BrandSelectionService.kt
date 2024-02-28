@@ -1,5 +1,6 @@
 package shoyoream.server.shoyoreamapplication.core.domain.product.brand.service
 
+import java.util.*
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
@@ -19,6 +20,19 @@ class BrandSelectionService(
                 entity(Brand::class)
             ).where(
                 path(Brand::brandName).equal(brandName)
+            )
+        }
+    }
+
+    @Transactional
+    fun findBrandById(brandId: UUID): Brand? {
+        return brandRepository.findNullableSingle {
+            select(
+                entity(Brand::class)
+            ).from(
+                entity(Brand::class)
+            ).where(
+                path(Brand::id).equal(brandId)
             )
         }
     }
