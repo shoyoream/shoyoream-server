@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.infra.config
+package shoyoream.server.shoyoreamapplication.core.infra.config.mq
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer

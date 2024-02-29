@@ -140,6 +140,7 @@ subprojects {
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+        implementation("org.springframework.retry:spring-retry:2.0.5")
 
         implementation("org.springframework.kafka:spring-kafka")
         implementation("org.apache.kafka:kafka-clients:2.5.0")
