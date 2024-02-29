@@ -8,8 +8,8 @@ import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundE
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.exception.BrandErrorType
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandDomainService
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandSelectionService
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.GoodsType
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsDomainService
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsSelectionService
 

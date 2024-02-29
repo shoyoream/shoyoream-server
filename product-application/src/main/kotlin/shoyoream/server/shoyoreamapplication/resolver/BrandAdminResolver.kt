@@ -7,8 +7,8 @@ import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 import shoyoream.server.shoyoreamapplication.application.service.ProductAdminAppService
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.GoodsType
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 
 @Controller
 class BrandAdminResolver(

@@ -16,6 +16,8 @@ import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
 import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
 import java.util.UUID
 import org.hibernate.annotations.GenericGenerator
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 
 @Entity

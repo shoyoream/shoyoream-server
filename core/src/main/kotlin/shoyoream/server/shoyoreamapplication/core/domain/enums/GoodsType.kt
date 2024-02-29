@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity
+package shoyoream.server.shoyoreamapplication.core.domain.enums
 
 enum class GoodsType {
     GI,

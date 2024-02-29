@@ -9,8 +9,8 @@ import kotlinx.coroutines.withContext
 import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Goods
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.GoodsType
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.repository.GoodsRepository
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsDomainService
 

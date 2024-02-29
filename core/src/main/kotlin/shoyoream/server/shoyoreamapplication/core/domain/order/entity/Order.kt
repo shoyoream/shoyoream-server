@@ -22,5 +22,24 @@ class Order(
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "goods_id")
-    val goodsId: UUID
-) : BaseTimeEntity()
+    val goodsId: UUID,
+
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    @Column(name = "stocks_id")
+    val stocksId: UUID
+
+    // TODO : 구매자 관련 추가 되어야함.
+) : BaseTimeEntity() {
+    companion object {
+        fun of(
+            goodsId: UUID,
+            stocksId: UUID
+        ): Order {
+            return Order(
+                goodsId = goodsId,
+                stocksId = stocksId
+            )
+        }
+    }
+}

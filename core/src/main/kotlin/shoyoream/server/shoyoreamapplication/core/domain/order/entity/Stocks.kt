@@ -2,13 +2,18 @@ package shoyoream.server.shoyoreamapplication.core.domain.order.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import java.math.BigDecimal
 import java.util.*
 import org.hibernate.annotations.GenericGenerator
 import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
 import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
+import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 
 @Entity
 @Table(name = "stocks")
@@ -22,6 +27,32 @@ class Stocks(
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "goods_id")
-    val goodsId: UUID
+    val goodsId: UUID,
 
-) : BaseTimeEntity()
+    @Enumerated(EnumType.STRING)
+    val goodsType: GoodsType,
+
+    @Enumerated(EnumType.STRING)
+    val goodsSize: GoodsSize,
+
+    @Column(name = "price")
+    val price: BigDecimal
+
+    // TODO : 유저 관련 추가 되어야함.
+) : BaseTimeEntity() {
+    companion object {
+        fun of(
+            goodsId: UUID,
+            goodsType: GoodsType,
+            goodsSize: GoodsSize,
+            price: BigDecimal
+        ): Stocks {
+            return Stocks(
+                goodsId = goodsId,
+                goodsType = goodsType,
+                goodsSize = goodsSize,
+                price = price
+            )
+        }
+    }
+}
