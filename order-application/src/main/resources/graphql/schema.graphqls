@@ -1,3 +1,23 @@
 type DefaultResponse {
     id: String
 }
+
+enum GoodsType {
+    GI
+    NO_GI_TOP
+    NO_GI_SHORTS
+    BELTS
+    ACCESSORIES
+}
+
+enum GoodsSize {
+    A0
+    A1
+    A2
+    A3
+    S
+    M
+    L
+    XL
+    XXL
+}
