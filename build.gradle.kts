@@ -50,7 +50,7 @@ subprojects {
             xml.required = false
             csv.required = false
 
-            html.outputLocation = file("build/reports/jacoco/index.html")
+            html.outputLocation = file("build/reports/jacoco/")
         }
 
         val excludes = listOf(
