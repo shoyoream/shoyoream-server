@@ -1,24 +1,23 @@
 package shoyoream.server.shoyoreamapplication.application.service
 
-import java.math.BigDecimal
 import java.util.UUID
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
-import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Stocks
-import shoyoream.server.shoyoreamapplication.core.domain.order.service.StocksDomainService
+import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
+import shoyoream.server.shoyoreamapplication.core.domain.order.exception.OrderErrorType
+import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderDomainService
+import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderSelectionService
 
 @Service
 class OrderAppService(
-    private val stocksDomainService: StocksDomainService
+    private val orderSelectionService: OrderSelectionService,
+    private val orderDomainService: OrderDomainService
 ) {
-    @Transactional
-    fun registerStock(goodsId: UUID, goodsType: GoodsType, goodsSize: GoodsSize, size: BigDecimal): DefaultResponse<UUID> {
-        val newStocks = stocksDomainService.createStocks(
-            Stocks.of(goodsId, goodsType, goodsSize, size)
-        )
-        return DefaultResponse.response(newStocks.id)
+    @Transactional(readOnly = true)
+    fun getOrder(orderId: UUID): DefaultResponse<UUID> {
+        val targetOrder = orderSelectionService.findOrderById(orderId)
+            ?: throw DataNotFoundException(OrderErrorType.NOT_FOUND_ORDER)
+        return DefaultResponse.response(targetOrder.id)
     }
 }

@@ -1,26 +1,20 @@
 package shoyoream.server.shoyoreamapplication.resolver
 
-import java.math.BigDecimal
 import java.util.UUID
 import org.springframework.graphql.data.method.annotation.Argument
-import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 import shoyoream.server.shoyoreamapplication.application.service.OrderAppService
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 
 @Controller
 class OrderResolver(
     private val orderAppService: OrderAppService
 ) {
-    @MutationMapping
-    fun registerStock(
-        @Argument goodsId: UUID,
-        @Argument goodsType: GoodsType,
-        @Argument goodsSize: GoodsSize,
-        @Argument price: BigDecimal
+    @QueryMapping
+    fun getOrder(
+        @Argument orderId: UUID
     ): DefaultResponse<UUID> {
-        return orderAppService.registerStock(goodsId, goodsType, goodsSize, price)
+        return orderAppService.getOrder(orderId)
     }
 }
