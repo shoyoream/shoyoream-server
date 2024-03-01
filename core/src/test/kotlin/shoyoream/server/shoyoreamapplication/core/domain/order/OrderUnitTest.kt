@@ -18,10 +18,12 @@ class OrderUnitTest : StringSpec({
     val orderDomainService = OrderDomainService(orderRepository)
 
     "주문을 생성한다" {
+        val orderId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
         val stocksId = UUID.randomUUID()
 
         val newOrder = Order.of(
+            orderId = orderId,
             goodsId = goodsId,
             stocksId = stocksId
         )
@@ -30,6 +32,7 @@ class OrderUnitTest : StringSpec({
 
         val createOrder = withContext(Dispatchers.IO) {
             val order = Order.of(
+                orderId = orderId,
                 goodsId = goodsId,
                 stocksId = stocksId
             )

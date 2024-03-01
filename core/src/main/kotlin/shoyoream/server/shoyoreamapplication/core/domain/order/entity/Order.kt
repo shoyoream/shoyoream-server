@@ -8,7 +8,6 @@ import jakarta.persistence.Table
 import java.util.*
 import org.hibernate.annotations.GenericGenerator
 import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
-import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
 
 @Entity
 @Table(name = "orders")
@@ -17,7 +16,7 @@ class Order(
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "order_id")
-    val id: UUID = UUIDGenerator.randomUUID(),
+    val id: UUID,
 
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
@@ -33,10 +32,12 @@ class Order(
 ) : BaseTimeEntity() {
     companion object {
         fun of(
+            orderId: UUID,
             goodsId: UUID,
             stocksId: UUID
         ): Order {
             return Order(
+                id = orderId,
                 goodsId = goodsId,
                 stocksId = stocksId
             )

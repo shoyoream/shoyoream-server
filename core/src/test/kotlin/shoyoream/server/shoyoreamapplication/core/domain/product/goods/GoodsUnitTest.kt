@@ -13,6 +13,7 @@ import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.repository.GoodsRepository
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsDomainService
+import java.util.UUID
 
 @SpringBootTest
 class GoodsUnitTest : StringSpec({
@@ -20,11 +21,15 @@ class GoodsUnitTest : StringSpec({
     val goodsDomainService = GoodsDomainService(goodsRepository)
 
     "새 상품을 브랜드와 같이 넣으면 새로운 상품이 생성된다." {
+        val goodsId = UUID.randomUUID()
         val newGoodsName = "newGoodsName"
+        val brandId = UUID.randomUUID()
         val targetBrand = Brand.of(
+            brandId = brandId,
             brandName = "targetBrand"
         )
         val newGoods = Goods.of(
+            goodsId = goodsId,
             goodsName = newGoodsName,
             goodsCode = "newGoodsCode",
             goodsType = GoodsType.GI,

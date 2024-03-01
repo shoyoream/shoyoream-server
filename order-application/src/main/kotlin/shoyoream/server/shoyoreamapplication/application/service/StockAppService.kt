@@ -20,6 +20,7 @@ class StockAppService(
     fun registerStock(stockInput: StockRequestDTO.StockInput): DefaultResponse<UUID> {
         val newStocks = stocksDomainService.createStocks(
             Stocks.of(
+                stocksId = UUID.randomUUID(),
                 goodsId = stockInput.goodsId,
                 goodsType = stockInput.goodsType,
                 goodsSize = stockInput.goodsSize,

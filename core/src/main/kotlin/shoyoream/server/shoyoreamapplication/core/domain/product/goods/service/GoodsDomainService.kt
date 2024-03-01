@@ -6,6 +6,7 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Go
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.repository.GoodsRepository
+import java.util.*
 
 @Service
 class GoodsDomainService(
@@ -20,6 +21,7 @@ class GoodsDomainService(
     ): Goods {
         return goodsRepository.save(
             Goods.of(
+                goodsId = UUID.randomUUID(),
                 goodsName = goodsName,
                 goodsCode = goodsCode,
                 goodsType = goodsType,

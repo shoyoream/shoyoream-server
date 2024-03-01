@@ -20,10 +20,12 @@ class StocksSelectionServiceTest : BehaviorSpec({
     val stocksSelectionService = StocksSelectionService(stocksRepository)
 
     Given("특정 제품이 있는 경우") {
-        val existGoodsId = UUID.randomUUID()
+        val existsStocksId = UUID.randomUUID()
+        val goodsId = UUID.randomUUID()
         val stockPrice = BigDecimal.TEN
         val expectedStocks = Stocks.of(
-            goodsId = existGoodsId,
+            stocksId = existsStocksId,
+            goodsId = goodsId,
             goodsType = GoodsType.BELTS,
             goodsSize = GoodsSize.A2,
             price = stockPrice
@@ -34,7 +36,7 @@ class StocksSelectionServiceTest : BehaviorSpec({
         } returns expectedStocks
 
         When("해당 제품 ID로 조회하면") {
-            val gotStocks = stocksSelectionService.findStocksById(existGoodsId)
+            val gotStocks = stocksSelectionService.findStocksById(goodsId)
 
             Then("해당 제품이 반환된다.") {
                 gotStocks shouldBe expectedStocks

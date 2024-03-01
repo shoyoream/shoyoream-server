@@ -13,7 +13,6 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
-import shoyoream.server.shoyoreamapplication.core.common.utils.UUIDGenerator
 import java.util.UUID
 import org.hibernate.annotations.GenericGenerator
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
@@ -27,7 +26,7 @@ class Goods(
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "goods_id")
-    val id: UUID = UUIDGenerator.randomUUID(),
+    val id: UUID,
 
     @Column(name = "goods_name")
     val goodsName: String,
@@ -47,6 +46,7 @@ class Goods(
 ) : BaseTimeEntity() {
     companion object {
         fun of(
+            goodsId: UUID,
             goodsName: String,
             goodsCode: String,
             goodsType: GoodsType,
@@ -54,6 +54,7 @@ class Goods(
             brand: Brand
         ): Goods {
             return Goods(
+                id = goodsId,
                 goodsName = goodsName,
                 goodsCode = goodsCode,
                 goodsType = goodsType,

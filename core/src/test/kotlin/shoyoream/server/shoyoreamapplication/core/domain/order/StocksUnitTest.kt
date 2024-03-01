@@ -19,11 +19,13 @@ class StocksUnitTest : StringSpec({
     val stocksDomainService = StocksDomainService(stocksRepository)
 
     "Stocks을 (내 제품을) 올린다." {
+        val targetStocksId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
         val goodsType = GoodsType.GI
         val goodsSize = GoodsSize.L
         val price = BigDecimal.TEN
         val exampleStocks = Stocks.of(
+            stocksId = targetStocksId,
             goodsId = goodsId,
             goodsType = goodsType,
             goodsSize = goodsSize,
@@ -34,6 +36,7 @@ class StocksUnitTest : StringSpec({
 
         val createStocks = stocksDomainService.createStocks(
             Stocks.of(
+                stocksId = targetStocksId,
                 goodsId = goodsId,
                 goodsType = goodsType,
                 goodsSize = goodsSize,
@@ -41,7 +44,7 @@ class StocksUnitTest : StringSpec({
             )
         )
 
-        createStocks.goodsId shouldBe exampleStocks.goodsId
+        createStocks.id shouldBe exampleStocks.id
         createStocks.price shouldBe exampleStocks.price
         createStocks shouldBe exampleStocks
     }
