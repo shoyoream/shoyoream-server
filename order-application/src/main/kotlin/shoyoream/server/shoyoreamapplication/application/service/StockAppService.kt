@@ -1,13 +1,11 @@
 package shoyoream.server.shoyoreamapplication.application.service
 
-import java.math.BigDecimal
 import java.util.UUID
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import shoyoream.server.shoyoreamapplication.application.dto.StockRequestDTO
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Stocks
 import shoyoream.server.shoyoreamapplication.core.domain.order.exception.StocksErrorType
 import shoyoream.server.shoyoreamapplication.core.domain.order.service.StocksDomainService
@@ -19,9 +17,14 @@ class StockAppService(
     private val stocksSelectionService: StocksSelectionService
 ) {
     @Transactional
-    fun registerStock(goodsId: UUID, goodsType: GoodsType, goodsSize: GoodsSize, size: BigDecimal): DefaultResponse<UUID> {
+    fun registerStock(stockInput: StockRequestDTO.StockInput): DefaultResponse<UUID> {
         val newStocks = stocksDomainService.createStocks(
-            Stocks.of(goodsId, goodsType, goodsSize, size)
+            Stocks.of(
+                goodsId = stockInput.goodsId,
+                goodsType = stockInput.goodsType,
+                goodsSize = stockInput.goodsSize,
+                price = stockInput.price
+            )
         )
         return DefaultResponse.response(newStocks.id)
     }

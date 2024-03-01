@@ -5,10 +5,9 @@ import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
+import shoyoream.server.shoyoreamapplication.application.dto.BrandRequestDTO
 import shoyoream.server.shoyoreamapplication.application.service.ProductAdminAppService
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 
 @Controller
 class BrandAdminResolver(
@@ -23,13 +22,9 @@ class BrandAdminResolver(
 
     @MutationMapping
     fun registerGoods(
-        @Argument goodsName: String,
-        @Argument goodsCode: String,
-        @Argument goodsType: GoodsType,
-        @Argument goodsSize: GoodsSize,
-        @Argument brandId: UUID
+        @Argument goodsInput: BrandRequestDTO.GoodsInput
     ): DefaultResponse<UUID> {
-        return productAdminAppService.createNewGoods(goodsName, goodsCode, goodsType, goodsSize, brandId)
+        return productAdminAppService.createNewGoods(goodsInput)
     }
 
     @QueryMapping

@@ -3,13 +3,12 @@ package shoyoream.server.shoyoreamapplication.application.service
 import java.util.UUID
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import shoyoream.server.shoyoreamapplication.application.dto.BrandRequestDTO
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.exception.BrandErrorType
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandDomainService
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandSelectionService
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
-import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsDomainService
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsSelectionService
 
@@ -30,20 +29,16 @@ class ProductAdminAppService(
 
     @Transactional
     fun createNewGoods(
-        goodsName: String,
-        goodsCode: String,
-        goodsType: GoodsType,
-        goodsSize: GoodsSize,
-        brandId: UUID
+        goodsInput: BrandRequestDTO.GoodsInput
     ): DefaultResponse<UUID> {
-        val targetBrand = brandSelectionService.findBrandById(brandId)
+        val targetBrand = brandSelectionService.findBrandById(goodsInput.brandId)
             ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
 
         val newGoods = goodsDomainService.createNewGoods(
-            goodsName = goodsName,
-            goodsCode = goodsCode,
-            goodsType = goodsType,
-            goodsSize = goodsSize,
+            goodsName = goodsInput.goodsName,
+            goodsCode = goodsInput.goodsCode,
+            goodsType = goodsInput.goodsType,
+            goodsSize = goodsInput.goodsSize,
             brand = targetBrand
         )
         return DefaultResponse.response(
