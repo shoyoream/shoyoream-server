@@ -1,8 +1,5 @@
 type Mutation {
     registerStock(
-        goodsId: String!
-        goodsType: GoodsType!
-        goodsSize: GoodsSize!
-        price: Float!
+        stockInput: StockInput
     ): DefaultResponse
 }

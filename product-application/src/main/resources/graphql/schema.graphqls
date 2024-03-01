@@ -21,3 +21,11 @@ enum GoodsSize {
     XL
     XXL
 }
+
+input GoodsInput {
+    brandId: String!
+    goodsType: GoodsType!
+    goodsName: String!
+    goodsCode: String!
+    goodsSize: GoodsSize!
+}

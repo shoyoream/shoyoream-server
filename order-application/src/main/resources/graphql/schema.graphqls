@@ -21,3 +21,10 @@ enum GoodsSize {
     XL
     XXL
 }
+
+input StockInput {
+    goodsId: String!
+    goodsType: GoodsType!
+    goodsSize: GoodsSize!
+    price: Float!
+}
