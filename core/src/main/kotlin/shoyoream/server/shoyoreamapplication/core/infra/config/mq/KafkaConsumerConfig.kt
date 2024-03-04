@@ -1,5 +1,6 @@
 package shoyoream.server.shoyoreamapplication.core.infra.config.mq
 
+import java.util.UUID
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.beans.factory.annotation.Value
@@ -16,7 +17,7 @@ class KafkaConsumerConfig(
     @Value("\${spring.kafka.consumer.group-id}") private val groupId: String
 ) {
     @Bean
-    fun consumerFactory(): ConsumerFactory<String, Any> {
+    fun consumerFactory(): ConsumerFactory<UUID, Any> {
         val config: MutableMap<String, Any> = HashMap()
         config[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootStrapSever
         config[ConsumerConfig.GROUP_ID_CONFIG] = groupId
@@ -28,8 +29,8 @@ class KafkaConsumerConfig(
     }
 
     @Bean
-    fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, Any> {
-        val factory = ConcurrentKafkaListenerContainerFactory<String, Any>()
+    fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<UUID, Any> {
+        val factory = ConcurrentKafkaListenerContainerFactory<UUID, Any>()
         factory.consumerFactory = consumerFactory()
         return factory
     }
