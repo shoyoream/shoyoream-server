@@ -11,6 +11,7 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Br
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.repository.BrandRepository
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
+import java.util.UUID
 
 @SpringBootTest
 class BrandSelectionServiceTest : BehaviorSpec({
@@ -19,7 +20,10 @@ class BrandSelectionServiceTest : BehaviorSpec({
 
     Given("특정 브랜드가 있는 경우") {
         val existBrandName = "Exist Brand"
-        val expectedBrand = Brand.of(brandName = existBrandName)
+        val expectedBrand = Brand.of(
+            brandId = UUID.randomUUID(),
+            brandName = existBrandName
+        )
 
         every {
             brandRepository.findNullableSingle<Brand>(any())

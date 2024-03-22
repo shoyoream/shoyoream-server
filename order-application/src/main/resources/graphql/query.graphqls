@@ -1,0 +1,4 @@
+type Query {
+    getOrder(orderId: String): DefaultResponse
+    getStocks(stockId: String): DefaultResponse
+}

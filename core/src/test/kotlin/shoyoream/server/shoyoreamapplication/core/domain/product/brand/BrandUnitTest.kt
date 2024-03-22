@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.repository.BrandRepository
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandDomainService
+import java.util.UUID
 
 @SpringBootTest
 class BrandUnitTest : StringSpec({
@@ -18,7 +19,10 @@ class BrandUnitTest : StringSpec({
 
     "브랜드 이름을 넣으면 새로운 브랜드가 생성된다." {
         val newBrandName = "Test Brand Name"
-        val expectedBrand = Brand.of(brandName = newBrandName)
+        val expectedBrand = Brand.of(
+            brandId = UUID.randomUUID(),
+            brandName = newBrandName
+        )
         every { brandRepository.save(any()) } returns expectedBrand
 
         val createdBrand = withContext(Dispatchers.IO) {
