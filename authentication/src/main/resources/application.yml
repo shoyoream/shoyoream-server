@@ -1,0 +1,20 @@
+server:
+    port: 8084
+spring:
+    profiles:
+        active: local
+        include: core, redis
+
+---
+spring:
+    graphql:
+        graphiql:
+            enabled: true
+        schema:
+            locations: classpath:graphql/**/
+            file-extensions: .graphqls
+    main:
+        allow-bean-definition-overriding: true
+    config:
+        activate:
+            on-profile: local

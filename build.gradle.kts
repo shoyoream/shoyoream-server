@@ -202,6 +202,12 @@ project(":core") {
     bootJar.enabled = false
 }
 
+project(":authentication") {
+    tasks.bootJar {
+        archiveFileName.set("authentication.jar")
+    }
+}
+
 project(":product-application") {
     tasks.bootJar {
         archiveFileName.set("product-application.jar")
