@@ -1,9 +1,13 @@
 server:
+    servlet:
+        session:
+            cookie:
+              name: SSESSIONID
     port: 8084
 spring:
     profiles:
         active: local
-        include: core, redis
+        include: core, redis, session
 
 ---
 spring:
