@@ -13,5 +13,11 @@ class Customer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    val customerId: Long = 0L
+    val customerId: Long = 0L,
+
+    @Column(name = "email", unique = true)
+    val email: String,
+
+    @Column(name = "password")
+    var password: String
 )
