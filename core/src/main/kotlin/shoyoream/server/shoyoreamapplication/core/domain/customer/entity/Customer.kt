@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import shoyoream.server.shoyoreamapplication.core.common.model.BaseTimeEntity
 
 @Entity
 @Table(name = "customer")
@@ -20,4 +21,13 @@ class Customer(
 
     @Column(name = "password")
     var password: String
-)
+) : BaseTimeEntity() {
+    companion object {
+        fun of(email: String, password: String): Customer {
+            return Customer(
+                email = email,
+                password = password
+            )
+        }
+    }
+}

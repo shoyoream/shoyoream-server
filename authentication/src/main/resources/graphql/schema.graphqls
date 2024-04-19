@@ -1,8 +1,13 @@
 type DefaultResponse {
-    id: String
+    id: Int
 }
 
 input LoginInput {
+    email: String!
+    password: String!
+}
+
+input RegisterUserInput {
     email: String!
     password: String!
 }

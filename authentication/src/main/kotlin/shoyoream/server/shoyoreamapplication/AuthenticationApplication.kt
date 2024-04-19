@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.authentication
+package shoyoream.server.shoyoreamapplication
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

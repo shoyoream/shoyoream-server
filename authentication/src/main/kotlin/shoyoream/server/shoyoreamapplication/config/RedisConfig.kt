@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.authentication.config
+package shoyoream.server.shoyoreamapplication.config
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean

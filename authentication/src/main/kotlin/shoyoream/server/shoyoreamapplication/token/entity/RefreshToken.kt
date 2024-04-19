@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.authentication.token.entity
+package shoyoream.server.shoyoreamapplication.token.entity
 
 import jakarta.persistence.Id
 import org.springframework.data.redis.core.RedisHash

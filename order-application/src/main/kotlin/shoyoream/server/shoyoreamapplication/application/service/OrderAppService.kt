@@ -20,6 +20,6 @@ class OrderAppService(
     fun getOrder(orderId: UUID): DefaultResponse<UUID> {
         val targetOrder = orderSelectionService.findOrderById(orderId)
             ?: throw DataNotFoundException(OrderErrorType.NOT_FOUND_ORDER)
-        return DefaultResponse.response(targetOrder.id)
+        return DefaultResponse.uuidResponse(targetOrder.id)
     }
 }

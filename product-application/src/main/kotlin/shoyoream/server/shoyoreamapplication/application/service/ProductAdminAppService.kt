@@ -22,7 +22,7 @@ class ProductAdminAppService(
     @Transactional
     fun createNewBrand(brandName: String): DefaultResponse<UUID> {
         val newBrand = brandDomainService.createNewBrand(brandName)
-        return DefaultResponse.response(
+        return DefaultResponse.uuidResponse(
             id = newBrand.id
         )
     }
@@ -41,7 +41,7 @@ class ProductAdminAppService(
             goodsSize = goodsInput.goodsSize,
             brand = targetBrand
         )
-        return DefaultResponse.response(
+        return DefaultResponse.uuidResponse(
             id = newGoods.id
         )
     }
@@ -51,7 +51,7 @@ class ProductAdminAppService(
         val targetBrand = brandSelectionService.findBrandByBrandName(brandName)
             ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
 
-        return DefaultResponse.response(
+        return DefaultResponse.uuidResponse(
             id = targetBrand.id
         )
     }
