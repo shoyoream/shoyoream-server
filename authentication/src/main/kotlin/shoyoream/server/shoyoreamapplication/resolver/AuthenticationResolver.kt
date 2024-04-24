@@ -18,10 +18,9 @@ class AuthenticationResolver(
     @MutationMapping
     fun login(
         @Argument loginInput: LoginInput
-    ): DefaultResponse<UUID> {
+    ): DefaultResponse<Long> {
         val request = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes).request
-
-        return DefaultResponse.uuidResponse(UUID.randomUUID())
+        return authenticationAppService.login(loginInput, request)
     }
 
     @MutationMapping

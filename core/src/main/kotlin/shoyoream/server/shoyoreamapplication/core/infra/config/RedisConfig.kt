@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.config
+package shoyoream.server.shoyoreamapplication.core.infra.config
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
