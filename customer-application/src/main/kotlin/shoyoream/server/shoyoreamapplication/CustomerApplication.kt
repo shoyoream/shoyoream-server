@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource
 @SpringBootApplication
 @PropertySource("classpath:/secure.properties")
 @EnableCaching
-class AuthenticationApplication
+class CustomerApplication
 
 fun main(args: Array<String>) {
-    runApplication<AuthenticationApplication>(*args)
+    runApplication<CustomerApplication>(*args)
 }
