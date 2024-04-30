@@ -10,5 +10,16 @@ class RefreshToken(
     val id: Long = 0L,
 
     @Indexed
-    val email: String
-)
+    val email: String,
+
+    val refreshToken: String
+) {
+    companion object {
+        fun of(email: String, refreshToken: String): RefreshToken {
+            return RefreshToken(
+                email = email,
+                refreshToken = refreshToken
+            )
+        }
+    }
+}

@@ -13,13 +13,16 @@ import shoyoream.server.shoyoreamapplication.core.domain.customer.service.Custom
 import shoyoream.server.shoyoreamapplication.exception.AuthenticationErrorType
 import shoyoream.server.shoyoreamapplication.token.component.JWTProvider
 import shoyoream.server.shoyoreamapplication.token.component.JWTValidator
+import shoyoream.server.shoyoreamapplication.token.entity.RefreshToken
 import shoyoream.server.shoyoreamapplication.token.model.TokenVariable.ACCESS_TOKEN
 import shoyoream.server.shoyoreamapplication.token.model.enums.TokenType
+import shoyoream.server.shoyoreamapplication.token.repository.RefreshTokenRepository
 
 @Service
 class AuthenticationAppService(
     private val jwtValidator: JWTValidator,
     private val jwtProvider: JWTProvider,
+    private val refreshTokenRepository: RefreshTokenRepository,
     private val customerDomainService: CustomerDomainService,
     private val customerSelectionService: CustomerSelectionService
 ) {
@@ -27,15 +30,19 @@ class AuthenticationAppService(
         // 세선 생성
         val session = request.session
 
-        val customerId = customerSelectionService.findCustomerForLogin(loginInput.email, loginInput.password).customerId
+        val customer = customerSelectionService.findCustomerForLogin(loginInput.email, loginInput.password)
 
         // key value 넣기 + 유효시간 설정
-        session.setAttribute(ACCESS_TOKEN, jwtProvider.generateToken(customerId.toInt(), loginInput.email, TokenType.ACCESS))
+        session.setAttribute(ACCESS_TOKEN, jwtProvider.generateToken(customer.customerId.toInt(), loginInput.email, TokenType.ACCESS))
         session.maxInactiveInterval = 60 * 60
 
         // TODO : Refresh Token은 Redis!
+        // TODO : 이 때, 기존에 올바른 refreshToken이 session? redis?에 존재한다면 삭제하고 다시 만들어야하는가?
+        refreshTokenRepository.save(
+            RefreshToken.of(customer.email, jwtProvider.generateToken(customer.customerId.toInt(), customer.email, TokenType.REFRESH))
+        )
 
-        return DefaultResponse.successResponse(customerId)
+        return DefaultResponse.successResponse(customer.customerId)
     }
 
     fun registerCustomer(registerUserInput: RegisterUserInput): DefaultResponse<Long> {
