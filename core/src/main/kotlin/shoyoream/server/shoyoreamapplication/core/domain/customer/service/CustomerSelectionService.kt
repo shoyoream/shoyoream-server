@@ -13,10 +13,10 @@ class CustomerSelectionService(
     private val customerRepository: CustomerRepository
 ) {
     @Transactional(readOnly = true)
-    fun findCustomerForLogin(email: String, encodedPassword: String): Long {
+    fun findCustomerForLogin(email: String, encodedPassword: String): Customer {
         return customerRepository.findNullableSingle {
             select(
-                entity(Long::class, "customerId")
+                entity(Customer::class)
             ).from(
                 entity(Customer::class)
             ).whereAnd(

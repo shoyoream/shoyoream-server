@@ -19,7 +19,7 @@ class AuthenticationAppService(
         // 세선 생성
         val session = request.session
 
-        val customerId = customerSelectionService.findCustomerForLogin(loginInput.email, loginInput.password)
+        val customerId = customerSelectionService.findCustomerForLogin(loginInput.email, loginInput.password).customerId
 
         // key value 넣기 + 유효시간 설정
         session.setAttribute("customerId", customerId)
