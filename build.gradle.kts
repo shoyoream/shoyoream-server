@@ -227,12 +227,6 @@ project(":payment-application") {
     }
 }
 
-project(":shipping-application") {
-    tasks.bootJar {
-        archiveFileName.set("shipping-application.jar")
-    }
-}
-
 val jar: Jar by tasks
 val bootJar: BootJar by tasks
 

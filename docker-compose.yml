@@ -71,25 +71,6 @@ services:
         depends_on:
             - database
 
-    shipping-application:
-        container_name: shipping_application
-        build:
-            context: ./
-            dockerfile: Dockerfile-shipping
-        env_file:
-            - .env
-        ports:
-            - "8084:8084"
-        environment:
-            SPRING_DATASOURCE_URL: ${DATABASE_URL}
-            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
-            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
-        command: bash -c "
-            java -jar -Dspring.profiles.active=local ./shipping-application/build/libs/shipping-application.jar
-            "
-        depends_on:
-            - database
-
     customer-application:
         container_name: customer_application
         build:
