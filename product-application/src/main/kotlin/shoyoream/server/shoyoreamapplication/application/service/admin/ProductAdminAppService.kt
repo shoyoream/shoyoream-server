@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.application.service
+package shoyoream.server.shoyoreamapplication.application.service.admin
 
 import java.util.UUID
 import org.springframework.stereotype.Service
@@ -43,16 +43,6 @@ class ProductAdminAppService(
         )
         return DefaultResponse.uuidResponse(
             id = newGoods.id
-        )
-    }
-
-    @Transactional(readOnly = true)
-    fun findBrandByBrandName(brandName: String): DefaultResponse<UUID> {
-        val targetBrand = brandSelectionService.findBrandByBrandName(brandName)
-            ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
-
-        return DefaultResponse.uuidResponse(
-            id = targetBrand.id
         )
     }
 }
