@@ -4,7 +4,7 @@ spring:
             load-on-startup: 1
     config:
         activate:
-            on-profile: local
+            on-profile: local-payment
     batch:
         jdbc:
             initialize-schema: always

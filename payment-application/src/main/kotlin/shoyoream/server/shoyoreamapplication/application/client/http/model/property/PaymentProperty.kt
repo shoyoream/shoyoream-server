@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.infra.model
+package shoyoream.server.shoyoreamapplication.application.client.http.model.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

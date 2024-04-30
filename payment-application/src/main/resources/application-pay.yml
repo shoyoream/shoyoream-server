@@ -4,7 +4,7 @@ pay:
             access-key: ''
             secret-key: ''
         host:
-            url: open-api.kakaopay.com
+            url: https://open-api.kakaopay.com
     naver-pay:
         authentication:
             access-key: ''

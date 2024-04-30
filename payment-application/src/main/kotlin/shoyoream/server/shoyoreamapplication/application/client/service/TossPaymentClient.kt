@@ -9,7 +9,7 @@ import shoyoream.server.shoyoreamapplication.application.client.http.model.enume
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayRequest
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayResponse
 import shoyoream.server.shoyoreamapplication.core.common.utils.Base64UtilFunctions
-import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentProperty
+import shoyoream.server.shoyoreamapplication.application.client.http.model.property.PaymentProperty
 
 @Component
 class TossPaymentClient(

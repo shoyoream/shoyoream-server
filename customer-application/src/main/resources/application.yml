@@ -6,8 +6,8 @@ server:
     port: 8085
 spring:
     profiles:
-        active: local
-        include: core, redis, session
+        active: local-customer
+        include: core, redis, session, token
 
 ---
 spring:
@@ -21,4 +21,4 @@ spring:
         allow-bean-definition-overriding: true
     config:
         activate:
-            on-profile: local
+            on-profile: local-customer

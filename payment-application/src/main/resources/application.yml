@@ -2,7 +2,7 @@ server:
     port: 8083
 spring:
     profiles:
-        active: local
+        active: local-payment
         include: core, pay
 
 ---
@@ -17,4 +17,4 @@ spring:
         allow-bean-definition-overriding: true
     config:
         activate:
-            on-profile: local
+            on-profile: local-payment
