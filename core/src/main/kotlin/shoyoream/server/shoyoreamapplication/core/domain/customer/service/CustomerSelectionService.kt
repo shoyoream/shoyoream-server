@@ -25,4 +25,17 @@ class CustomerSelectionService(
             )
         } ?: throw DataNotFoundException(CustomerErrorType.NOT_FOUND_CUSTOMER)
     }
+
+    @Transactional(readOnly = true)
+    fun findCustomerById(id: Long): Customer {
+        return customerRepository.findNullableSingle {
+            select(
+                entity(Customer::class)
+            ).from(
+                entity(Customer::class)
+            ).where(
+                path(Customer::customerId).equal(id)
+            )
+        } ?: throw DataNotFoundException(CustomerErrorType.NOT_FOUND_CUSTOMER)
+    }
 }

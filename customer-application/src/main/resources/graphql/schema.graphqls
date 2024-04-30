@@ -2,6 +2,11 @@ type DefaultResponse {
     id: Int
 }
 
+type UserInfo {
+    id: Int!
+    email: String!
+}
+
 input LoginInput {
     email: String!
     password: String!

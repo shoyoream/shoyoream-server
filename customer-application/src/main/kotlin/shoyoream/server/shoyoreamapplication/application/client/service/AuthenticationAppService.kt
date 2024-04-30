@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest
 import org.springframework.stereotype.Service
 import shoyoream.server.shoyoreamapplication.application.dto.LoginInput
 import shoyoream.server.shoyoreamapplication.application.dto.RegisterUserInput
+import shoyoream.server.shoyoreamapplication.application.dto.UserInfoResponse
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.domain.customer.entity.Customer
 import shoyoream.server.shoyoreamapplication.core.domain.customer.service.CustomerDomainService
@@ -15,11 +16,14 @@ class AuthenticationAppService(
     private val customerSelectionService: CustomerSelectionService
 ) {
     fun login(loginInput: LoginInput, request: HttpServletRequest): DefaultResponse<Long> {
-        // TODO : 로그인 처리 로직
+        // 세선 생성
         val session = request.session
 
         val customerId = customerSelectionService.findCustomerForLogin(loginInput.email, loginInput.password)
-        // TODO : 세션을 저장하고 불러오는 로직이 필요함
+
+        // key value 넣기 + 유효시간 설정
+        session.setAttribute("customerId", customerId)
+        session.maxInactiveInterval = 60 * 60
 
         return DefaultResponse.successResponse(customerId)
     }
@@ -30,5 +34,10 @@ class AuthenticationAppService(
         )
 
         return DefaultResponse.successResponse(newCustomer.customerId)
+    }
+
+    fun getUserInfo(userId: Long): UserInfoResponse {
+        val customer = customerSelectionService.findCustomerById(userId)
+        return UserInfoResponse.of(customer)
     }
 }

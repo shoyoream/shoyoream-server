@@ -16,7 +16,7 @@ class CustomerUnitTest : StringSpec({
     val customerRepository: CustomerRepository = mockk(relaxed = true)
     val customerDomainService = CustomerDomainService(customerRepository)
 
-    "회원가입을 한디." {
+    "회원가입을 한다." {
         val email = "moonpiderman@gmail.com"
         val password = "password"
 
