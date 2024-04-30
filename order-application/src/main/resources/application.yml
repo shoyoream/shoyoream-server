@@ -2,7 +2,7 @@ server:
     port: 8082
 spring:
     profiles:
-        active: local
+        active: local-order
         include: core
 
 ---
@@ -17,4 +17,4 @@ spring:
         allow-bean-definition-overriding: true
     config:
         activate:
-            on-profile: local
+            on-profile: local-order

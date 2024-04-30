@@ -1,0 +1,24 @@
+server:
+    servlet:
+        session:
+            cookie:
+              name: JSSESSIONID
+    port: 8085
+spring:
+    profiles:
+        active: local-customer
+        include: core, redis, session, token
+
+---
+spring:
+    graphql:
+        graphiql:
+            enabled: true
+        schema:
+            locations: classpath:graphql/**/
+            file-extensions: .graphqls
+    main:
+        allow-bean-definition-overriding: true
+    config:
+        activate:
+            on-profile: local-customer

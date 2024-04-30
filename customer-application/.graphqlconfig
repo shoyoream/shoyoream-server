@@ -1,0 +1,7 @@
+{
+    "name": "Authentication GraphQL Config",
+    "schemaPath": "src/main/resources/graphql/schema.graphqls",
+    "extensions": {
+
+    }
+}

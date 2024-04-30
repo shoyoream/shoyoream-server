@@ -1,0 +1,8 @@
+type Mutation {
+    login(
+        loginInput: LoginInput
+    ): DefaultResponse!
+    registerUser(
+        registerUserInput: RegisterUserInput
+    ): DefaultResponse!
+}

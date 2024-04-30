@@ -27,13 +27,13 @@ class StockAppService(
                 price = stockInput.price
             )
         )
-        return DefaultResponse.response(newStocks.id)
+        return DefaultResponse.uuidResponse(newStocks.id)
     }
 
     @Transactional(readOnly = true)
     fun getStocks(stockId: UUID): DefaultResponse<UUID> {
         val targetStocks = stocksSelectionService.findStocksById(stockId)
             ?: throw DataNotFoundException(StocksErrorType.NOT_FOUND_STOCKS)
-        return DefaultResponse.response(targetStocks.id)
+        return DefaultResponse.uuidResponse(targetStocks.id)
     }
 }

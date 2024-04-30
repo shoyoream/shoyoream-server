@@ -15,7 +15,7 @@ import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.t
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.response.TossPaymentsErrorResponse
 import shoyoream.server.shoyoreamapplication.application.exception.PayException
 import shoyoream.server.shoyoreamapplication.core.common.utils.Base64UtilFunctions
-import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentProperty
+import shoyoream.server.shoyoreamapplication.application.client.http.model.property.PaymentProperty
 
 @Component
 class TossPaymentsClient(

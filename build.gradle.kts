@@ -141,13 +141,14 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
         implementation("org.springframework.retry:spring-retry:2.0.5")
+        implementation("org.springframework.boot:spring-boot-starter-data-redis")
+        implementation("org.springframework.session:spring-session-data-redis")
+
+        implementation("org.springframework.boot:spring-boot-starter-security")
+        testImplementation("org.springframework.security:spring-security-test")
 
         implementation("org.springframework.kafka:spring-kafka")
         implementation("org.apache.kafka:kafka-clients:2.5.0")
-
-//        val jdslVersion = "2.2.1.RELEASE"
-//        implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:$jdslVersion")
-//        implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:$jdslVersion")
 
         implementation("org.hibernate:hibernate-core:6.2.4.Final")
 
@@ -202,6 +203,12 @@ project(":core") {
     bootJar.enabled = false
 }
 
+project(":customer-application") {
+    tasks.bootJar {
+        archiveFileName.set("customer-application.jar")
+    }
+}
+
 project(":product-application") {
     tasks.bootJar {
         archiveFileName.set("product-application.jar")
@@ -217,12 +224,6 @@ project(":order-application") {
 project(":payment-application") {
     tasks.bootJar {
         archiveFileName.set("payment-application.jar")
-    }
-}
-
-project(":shipping-application") {
-    tasks.bootJar {
-        archiveFileName.set("shipping-application.jar")
     }
 }
 
