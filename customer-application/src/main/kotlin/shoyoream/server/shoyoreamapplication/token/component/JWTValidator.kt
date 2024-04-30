@@ -1,30 +1,40 @@
 package shoyoream.server.shoyoreamapplication.token.component
 
 import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
-import java.util.Date
+import io.jsonwebtoken.MalformedJwtException
+import io.jsonwebtoken.SignatureException
+import io.jsonwebtoken.UnsupportedJwtException
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import shoyoream.server.shoyoreamapplication.token.model.TokenProperty
+import shoyoream.server.shoyoreamapplication.token.model.enums.TokenType
+import shoyoream.server.shoyoreamapplication.token.model.property.TokenProperty
+import shoyoream.server.shoyoreamapplication.token.utils.TokenUtils
 
 @Component
 class JWTValidator(
+    private val tokenUtils: TokenUtils,
     private val tokenProperty: TokenProperty
 ) {
-    companion object {
-        private const val CUSTOMER_ID = "id"
-        private const val CUSTOMER_EMAIL = "email"
-    }
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
-    fun generateTokenWithoutPrefix(customerId: Long, customerEmail: String): String {
-        val claims = hashMapOf<String, Any>(
-            CUSTOMER_ID to customerId,
-            CUSTOMER_EMAIL to customerEmail
-        )
+    fun validateToken(token: String?, tokenType: TokenType): Boolean {
+        if (token.isNullOrEmpty()) {
+            logger.error("Token is not provided.")
+            return false
+        }
 
-        return Jwts.builder()
-            .setClaims(claims)
-            .setIssuedAt(Date())
-            .signWith(SignatureAlgorithm.HS256, tokenProperty.keys.accessKey)
-            .compact()
+        try {
+            Jwts.parser().setSigningKey(tokenUtils.getTokenKey(tokenType)).parseClaimsJws(token)
+            return true
+        } catch (ex: SignatureException) {
+            logger.error("Invalid Token Signature.")
+        } catch (ex: MalformedJwtException) {
+            logger.error("Invalid Token")
+        } catch (ex: UnsupportedJwtException) {
+            logger.error("Unsupported Token")
+        } catch (ex: IllegalArgumentException) {
+            logger.error("string is empty.")
+        }
+        return false
     }
 }

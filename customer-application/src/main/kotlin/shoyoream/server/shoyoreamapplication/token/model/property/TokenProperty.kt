@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.token.model
+package shoyoream.server.shoyoreamapplication.token.model.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
@@ -8,6 +8,6 @@ class TokenProperty(
 ) {
     data class Keys(
         val accessKey: String,
-        val secretKey: String
+        val refreshKey: String
     )
 }

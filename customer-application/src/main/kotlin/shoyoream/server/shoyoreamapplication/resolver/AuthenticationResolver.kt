@@ -11,6 +11,7 @@ import shoyoream.server.shoyoreamapplication.application.dto.LoginInput
 import shoyoream.server.shoyoreamapplication.application.dto.RegisterUserInput
 import shoyoream.server.shoyoreamapplication.application.dto.UserInfoResponse
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
+import shoyoream.server.shoyoreamapplication.token.model.TokenVariable.ACCESS_TOKEN
 
 @Controller
 class AuthenticationResolver(
@@ -35,7 +36,7 @@ class AuthenticationResolver(
     fun getUserInfoBySession(): UserInfoResponse {
         val request = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes).request
         val session = request.session
-        val userId = session.getAttribute("customerId") as Long
-        return authenticationAppService.getUserInfo(userId)
+        val accessToken = session.getAttribute(ACCESS_TOKEN) as String
+        return authenticationAppService.getUserInfo(accessToken)
     }
 }
