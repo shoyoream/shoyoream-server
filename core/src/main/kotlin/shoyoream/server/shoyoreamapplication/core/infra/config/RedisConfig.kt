@@ -28,4 +28,12 @@ class RedisConfig(
         redisTemplate.connectionFactory = redisConnectionFactory()
         return redisTemplate
     }
+
+//    @Bean
+//    fun redisTemplate(): RedisTemplate<String, Any> {
+//        val template = RedisTemplate<String, Any>()
+//        template.keySerializer = StringRedisSerializer()
+//        template.valueSerializer = Jackson2JsonRedisSerializer(Any::class.java)
+//        return template
+//    }
 }

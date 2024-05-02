@@ -10,14 +10,12 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.brand.exception
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandDomainService
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandSelectionService
 import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsDomainService
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsSelectionService
 
 @Service
 class ProductAdminAppService(
     private val brandDomainService: BrandDomainService,
     private val goodsDomainService: GoodsDomainService,
-    private val brandSelectionService: BrandSelectionService,
-    private val goodsSelectionService: GoodsSelectionService
+    private val brandSelectionService: BrandSelectionService
 ) {
     @Transactional
     fun createNewBrand(brandName: String): DefaultResponse<UUID> {

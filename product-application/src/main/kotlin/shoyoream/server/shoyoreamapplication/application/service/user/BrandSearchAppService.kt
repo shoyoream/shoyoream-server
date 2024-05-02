@@ -10,13 +10,14 @@ import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.B
 
 @Service
 class BrandSearchAppService(
+    private val brandCacheService: BrandCacheService,
     private val brandSelectionService: BrandSelectionService
 ) {
     @Transactional(readOnly = true)
     fun findBrandByBrandName(brandName: String): DefaultResponse<UUID> {
         // FIX : Cacheable 추가 필요
         // TODO : 캐시 저장 방식 필수 (key pattern)
-        val targetBrand = brandSelectionService.findBrandByBrandName(brandName)
+        val targetBrand = brandCacheService.getBrandCache(brandName)
             ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
 
         return DefaultResponse.uuidResponse(
