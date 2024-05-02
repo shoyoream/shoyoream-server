@@ -14,6 +14,8 @@ class BrandSearchAppService(
 ) {
     @Transactional(readOnly = true)
     fun findBrandByBrandName(brandName: String): DefaultResponse<UUID> {
+        // FIX : Cacheable 추가 필요
+        // TODO : 캐시 저장 방식 필수 (key pattern)
         val targetBrand = brandSelectionService.findBrandByBrandName(brandName)
             ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
 

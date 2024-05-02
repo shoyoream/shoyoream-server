@@ -38,8 +38,18 @@ class AuthenticationAppService(
 
         // TODO : Refresh Token은 Redis!
         // TODO : 이 때, 기존에 올바른 refreshToken이 session? redis?에 존재한다면 삭제하고 다시 만들어야하는가?
+
+        val refreshToken = jwtProvider.generateToken(customer.customerId.toInt(), customer.email, TokenType.REFRESH)
+
+        val existingToken = refreshTokenRepository.findByEmail(customer.email)
+
+        if (existingToken != null) {
+            // If it exists, delete or update the existing RefreshToken
+            refreshTokenRepository.delete(existingToken)
+        }
+
         refreshTokenRepository.save(
-            RefreshToken.of(customer.email, jwtProvider.generateToken(customer.customerId.toInt(), customer.email, TokenType.REFRESH))
+            RefreshToken.of(refreshToken, customer.email)
         )
 
         return DefaultResponse.successResponse(customer.customerId)
