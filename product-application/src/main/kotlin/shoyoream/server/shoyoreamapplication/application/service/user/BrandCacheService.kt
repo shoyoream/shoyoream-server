@@ -1,6 +1,5 @@
 package shoyoream.server.shoyoreamapplication.application.service.user
 
-import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.repository.BrandRepository
@@ -10,7 +9,6 @@ import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableS
 class BrandCacheService(
     private val brandRepository: BrandRepository
 ) {
-    @Cacheable(cacheNames = ["brand"], key = "#brandName")
     fun getBrandCache(brandName: String): Brand? {
         return brandRepository.findNullableSingle {
             select(

@@ -2,6 +2,11 @@ type DefaultResponse {
     id: String
 }
 
+type BrandResponse {
+    brandId: String
+    brandName: String
+}
+
 enum GoodsType {
     GI
     NO_GI_TOP
