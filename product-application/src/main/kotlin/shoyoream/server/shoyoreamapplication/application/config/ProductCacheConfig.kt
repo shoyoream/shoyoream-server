@@ -33,7 +33,7 @@ class ProductCacheConfig {
         val objectMapper = ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .registerModule(JavaTimeModule())
-            .activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL)
+            .activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.OBJECT_AND_NON_CONCRETE)
             .disable(SerializationFeature.WRITE_DATE_KEYS_AS_TIMESTAMPS)
 
         val cacheProperties = listOf(

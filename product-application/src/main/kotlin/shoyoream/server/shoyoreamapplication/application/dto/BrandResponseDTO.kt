@@ -1,12 +1,15 @@
 package shoyoream.server.shoyoreamapplication.application.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import java.io.Serializable
 import java.util.UUID
 import shoyoream.server.shoyoreamapplication.core.domain.product.brand.entity.Brand
 
 class BrandResponseDTO {
     data class BrandResponse(
+        @JsonProperty("brandId")
         val brandId: UUID,
+        @JsonProperty("brandName")
         val brandName: String
     ) : Serializable {
         companion object {
