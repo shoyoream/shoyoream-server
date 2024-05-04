@@ -1,3 +1,4 @@
 type Query {
-    getBrand(brandName: String): DefaultResponse
+    getBrand(brandName: String): BrandResponse
+    getGoods(goodsId: String): GoodsResponse
 }
