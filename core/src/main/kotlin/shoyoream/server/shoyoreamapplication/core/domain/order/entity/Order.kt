@@ -26,7 +26,10 @@ class Order(
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "stocks_id")
-    val stocksId: UUID
+    val stocksId: UUID,
+
+    @Column(name = "buyer_id")
+    val buyerId: Long
 
     // TODO : 구매자 관련 추가 되어야함.
 ) : BaseTimeEntity() {
@@ -34,12 +37,14 @@ class Order(
         fun of(
             orderId: UUID,
             goodsId: UUID,
-            stocksId: UUID
+            stocksId: UUID,
+            buyerId: Long
         ): Order {
             return Order(
                 id = orderId,
                 goodsId = goodsId,
-                stocksId = stocksId
+                stocksId = stocksId,
+                buyerId = buyerId
             )
         }
     }

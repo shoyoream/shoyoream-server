@@ -24,7 +24,8 @@ class StockAppService(
                 goodsId = stockInput.goodsId,
                 goodsType = stockInput.goodsType,
                 goodsSize = stockInput.goodsSize,
-                price = stockInput.price
+                price = stockInput.price,
+                sellerId = stockInput.sellerId
             )
         )
         return DefaultResponse.uuidResponse(newStocks.id)

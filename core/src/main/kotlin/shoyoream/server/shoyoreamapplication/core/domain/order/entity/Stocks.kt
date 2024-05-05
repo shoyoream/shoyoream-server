@@ -35,7 +35,10 @@ class Stocks(
     val goodsSize: GoodsSize,
 
     @Column(name = "price")
-    val price: BigDecimal
+    val price: BigDecimal,
+
+    @Column(name = "seller_id")
+    val sellerId: Long
 
     // TODO : 유저 관련 추가 되어야함.
 ) : BaseTimeEntity() {
@@ -45,14 +48,16 @@ class Stocks(
             goodsId: UUID,
             goodsType: GoodsType,
             goodsSize: GoodsSize,
-            price: BigDecimal
+            price: BigDecimal,
+            sellerId: Long
         ): Stocks {
             return Stocks(
                 id = stocksId,
                 goodsId = goodsId,
                 goodsType = goodsType,
                 goodsSize = goodsSize,
-                price = price
+                price = price,
+                sellerId = sellerId
             )
         }
     }

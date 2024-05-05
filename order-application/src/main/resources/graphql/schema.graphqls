@@ -26,5 +26,6 @@ input StockInput {
     goodsId: String!
     goodsType: GoodsType!
     goodsSize: GoodsSize!
+    sellerId: Int!
     price: Float!
 }

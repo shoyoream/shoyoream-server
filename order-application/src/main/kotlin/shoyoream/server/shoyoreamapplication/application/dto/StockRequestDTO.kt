@@ -10,6 +10,7 @@ class StockRequestDTO {
         val goodsId: UUID,
         val goodsType: GoodsType,
         val goodsSize: GoodsSize,
+        val sellerId: Long,
         val price: BigDecimal
     )
 }
