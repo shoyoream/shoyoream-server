@@ -22,6 +22,14 @@ enum GoodsSize {
     XXL
 }
 
+input OrderInput {
+    goodsId: String!
+    goodsType: GoodsType!
+    goodsSize: GoodsSize!
+    buyerId: Int!
+    stocksId: String!
+}
+
 input StockInput {
     goodsId: String!
     goodsType: GoodsType!

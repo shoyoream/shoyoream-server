@@ -1,3 +1,14 @@
 type DefaultResponse {
     id: String
 }
+
+input PayRequest {
+    orderId: String!
+    buyerId: Int!
+    payType: PayType!
+}
+
+enum PayType {
+    CARD,
+    EASY
+}

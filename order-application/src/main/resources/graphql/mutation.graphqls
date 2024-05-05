@@ -2,4 +2,7 @@ type Mutation {
     registerStock(
         stockInput: StockInput
     ): DefaultResponse
+    registerOrder(
+        orderInput: OrderInput
+    ): DefaultResponse
 }
