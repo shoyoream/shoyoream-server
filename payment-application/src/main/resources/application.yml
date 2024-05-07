@@ -3,7 +3,7 @@ server:
 spring:
     profiles:
         active: local-payment
-        include: core, pay
+        include: core, pay, redis
 
 ---
 spring:
