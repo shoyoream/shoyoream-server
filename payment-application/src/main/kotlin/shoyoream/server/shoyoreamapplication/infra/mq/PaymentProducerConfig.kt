@@ -30,7 +30,7 @@ class PaymentProducerConfig(
     }
 
     @Bean
-    fun kafkaTemplate(): KafkaTemplate<UUID, Any> {
+    fun paymentProducerTemplate(): KafkaTemplate<UUID, Any> {
         return KafkaTemplate(producerFactory())
     }
 }

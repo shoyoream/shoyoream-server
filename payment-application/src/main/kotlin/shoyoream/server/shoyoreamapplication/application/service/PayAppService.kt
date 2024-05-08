@@ -1,6 +1,7 @@
 package shoyoream.server.shoyoreamapplication.application.service
 
 import java.util.UUID
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import payments.protobuf.PaymentMessage
@@ -11,7 +12,8 @@ import shoyoream.server.shoyoreamapplication.core.domain.order.entity.OrderStatu
 
 @Service
 class PayAppService(
-    private val payClientStrategyService: PayClientStrategyService
+    private val payClientStrategyService: PayClientStrategyService,
+    private val paymentProducerTemplate: KafkaTemplate<UUID, Any>
 ) {
     @Transactional
     fun pay(payRequest: PayRequest): DefaultResponse<UUID> {
@@ -22,6 +24,7 @@ class PayAppService(
             .setUpdatedStatus(OrderStatus.PAYMENT_COMPLETED.name)
             .build()
 
+        paymentProducerTemplate.send("order-status", UUID.randomUUID(), orderStatusMessage)
         return DefaultResponse.uuidResponse(UUID.randomUUID())
     }
 }
