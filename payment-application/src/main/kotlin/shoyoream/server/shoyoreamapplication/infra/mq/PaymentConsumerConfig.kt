@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.infra.config.mq
+package shoyoream.server.shoyoreamapplication.infra.mq
 
 import java.util.UUID
 import org.apache.kafka.clients.consumer.ConsumerConfig
@@ -12,7 +12,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 import org.springframework.kafka.support.serializer.JsonDeserializer
 
 @Configuration
-class KafkaConsumerConfig(
+class PaymentConsumerConfig(
     @Value("\${spring.kafka.consumer.bootstrap-servers}") private val bootStrapSever: String,
     @Value("\${spring.kafka.consumer.group-id}") private val groupId: String
 ) {

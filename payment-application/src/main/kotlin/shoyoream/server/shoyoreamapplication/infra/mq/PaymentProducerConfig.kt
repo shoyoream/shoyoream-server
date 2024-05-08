@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.infra.config.mq
+package shoyoream.server.shoyoreamapplication.infra.mq
 
 import java.util.UUID
 import org.apache.kafka.clients.producer.ProducerConfig
@@ -12,7 +12,7 @@ import org.springframework.kafka.core.ProducerFactory
 import org.springframework.kafka.support.serializer.JsonSerializer
 
 @Configuration
-class KafkaProducerConfig(
+class PaymentProducerConfig(
     @Value("\${spring.kafka.consumer.bootstrap-servers}") private val bootStrapSever: String
 ) {
     companion object {
