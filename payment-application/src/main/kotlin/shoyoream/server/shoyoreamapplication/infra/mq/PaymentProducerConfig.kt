@@ -1,6 +1,5 @@
 package shoyoream.server.shoyoreamapplication.infra.mq
 
-import java.util.UUID
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Value
@@ -21,7 +20,7 @@ class PaymentProducerConfig(
     }
 
     @Bean
-    fun producerFactory(): ProducerFactory<UUID, Any> {
+    fun producerFactory(): ProducerFactory<String, Any> {
         val config: MutableMap<String, Any> = HashMap()
         config[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootStrapSever
         config[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
@@ -30,7 +29,7 @@ class PaymentProducerConfig(
     }
 
     @Bean
-    fun paymentProducerTemplate(): KafkaTemplate<UUID, Any> {
+    fun paymentProducerTemplate(): KafkaTemplate<String, Any> {
         return KafkaTemplate(producerFactory())
     }
 }

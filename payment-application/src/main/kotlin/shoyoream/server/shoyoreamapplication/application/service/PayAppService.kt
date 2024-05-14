@@ -13,7 +13,7 @@ import shoyoream.server.shoyoreamapplication.core.domain.order.entity.OrderStatu
 @Service
 class PayAppService(
     private val payClientStrategyService: PayClientStrategyService,
-    private val paymentProducerTemplate: KafkaTemplate<UUID, Any>
+    private val paymentProducerTemplate: KafkaTemplate<String, Any>
 ) {
     @Transactional
     fun pay(payRequest: PayRequest): DefaultResponse<UUID> {
@@ -24,7 +24,7 @@ class PayAppService(
             .setUpdatedStatus(OrderStatus.PAYMENT_COMPLETED.name)
             .build()
 
-        paymentProducerTemplate.send("order-status", UUID.randomUUID(), orderStatusMessage)
+        paymentProducerTemplate.send("order-status", UUID.randomUUID().toString(), orderStatusMessage.toByteArray())
         return DefaultResponse.uuidResponse(UUID.randomUUID())
     }
 }
