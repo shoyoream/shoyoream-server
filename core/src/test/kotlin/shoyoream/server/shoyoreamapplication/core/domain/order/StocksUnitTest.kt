@@ -19,6 +19,7 @@ class StocksUnitTest : StringSpec({
     val stocksDomainService = StocksDomainService(stocksRepository)
 
     "Stocks을 (내 제품을) 올린다." {
+        val uploaderId = 1L
         val targetStocksId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
         val goodsType = GoodsType.GI
@@ -29,7 +30,8 @@ class StocksUnitTest : StringSpec({
             goodsId = goodsId,
             goodsType = goodsType,
             goodsSize = goodsSize,
-            price = price
+            price = price,
+            sellerId = uploaderId
         )
 
         every { stocksRepository.save(any()) } returns exampleStocks
@@ -40,7 +42,8 @@ class StocksUnitTest : StringSpec({
                 goodsId = goodsId,
                 goodsType = goodsType,
                 goodsSize = goodsSize,
-                price = price
+                price = price,
+                sellerId = uploaderId
             )
         )
 

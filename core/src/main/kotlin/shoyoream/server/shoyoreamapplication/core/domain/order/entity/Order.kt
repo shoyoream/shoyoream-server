@@ -2,6 +2,8 @@ package shoyoream.server.shoyoreamapplication.core.domain.order.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import jakarta.persistence.Table
@@ -26,21 +28,31 @@ class Order(
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "stocks_id")
-    val stocksId: UUID
+    val stocksId: UUID,
 
-    // TODO : 구매자 관련 추가 되어야함.
+    @Enumerated(EnumType.STRING)
+    var orderStatus: OrderStatus = OrderStatus.ORDERED,
+
+    @Column(name = "buyer_id")
+    val buyerId: Long
 ) : BaseTimeEntity() {
     companion object {
         fun of(
             orderId: UUID,
             goodsId: UUID,
-            stocksId: UUID
+            stocksId: UUID,
+            buyerId: Long
         ): Order {
             return Order(
                 id = orderId,
                 goodsId = goodsId,
-                stocksId = stocksId
+                stocksId = stocksId,
+                buyerId = buyerId
             )
         }
+    }
+
+    fun updateOrderStatus(orderStatus: OrderStatus) {
+        this.orderStatus = orderStatus
     }
 }

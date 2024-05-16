@@ -21,11 +21,13 @@ class OrderUnitTest : StringSpec({
         val orderId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
         val stocksId = UUID.randomUUID()
+        val buyerId = 1L
 
         val newOrder = Order.of(
             orderId = orderId,
             goodsId = goodsId,
-            stocksId = stocksId
+            stocksId = stocksId,
+            buyerId = buyerId
         )
 
         every { orderRepository.save(any()) } returns newOrder
@@ -34,7 +36,8 @@ class OrderUnitTest : StringSpec({
             val order = Order.of(
                 orderId = orderId,
                 goodsId = goodsId,
-                stocksId = stocksId
+                stocksId = stocksId,
+                buyerId = buyerId
             )
             orderDomainService.createOrder(order)
         }

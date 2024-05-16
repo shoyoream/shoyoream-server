@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 import shoyoream.server.shoyoreamapplication.application.client.http.model.enumerations.PayGateway
-import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayRequest
+import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayClientRequest
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayResponse
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.request.TossPaymentsApproveRequest
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.response.TossPaymentsCommonObject
@@ -29,8 +29,8 @@ class TossPaymentsClient(
 
     override fun getPayGateway(): PayGateway = PayGateway.TOSS_PAYMENTS
 
-    override fun request(payRequest: PayRequest): PayResponse {
-        val tossPaymentsApproveRequest = payRequest as TossPaymentsApproveRequest
+    override fun request(payClientRequest: PayClientRequest): PayResponse {
+        val tossPaymentsApproveRequest = payClientRequest as TossPaymentsApproveRequest
 
         return tossPaymentsWebClient.post()
             .uri(paymentProperty.tossPayments.endpoint.approve)

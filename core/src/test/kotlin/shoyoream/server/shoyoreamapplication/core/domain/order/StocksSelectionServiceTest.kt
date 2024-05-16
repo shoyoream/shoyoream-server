@@ -23,12 +23,14 @@ class StocksSelectionServiceTest : BehaviorSpec({
         val existsStocksId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
         val stockPrice = BigDecimal.TEN
+        val sellerId = 1L
         val expectedStocks = Stocks.of(
             stocksId = existsStocksId,
             goodsId = goodsId,
             goodsType = GoodsType.BELTS,
             goodsSize = GoodsSize.A2,
-            price = stockPrice
+            price = stockPrice,
+            sellerId = sellerId
         )
 
         every {

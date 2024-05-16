@@ -1,16 +1,15 @@
 package shoyoream.server.shoyoreamapplication.application.dto
 
+import java.util.UUID
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
-import java.math.BigDecimal
-import java.util.UUID
 
-class StockRequestDTO {
-    data class StockInput(
+class OrderRequestDTO {
+    data class OrderInput(
         val goodsId: UUID,
         val goodsType: GoodsType,
         val goodsSize: GoodsSize,
-        val sellerId: Long,
-        val price: BigDecimal
+        val buyerId: Long,
+        val stocksId: UUID
     )
 }

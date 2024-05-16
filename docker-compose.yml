@@ -14,6 +14,81 @@ services:
             POSTGRES_USER: ${DATABASE_USERNAME}
             POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
 
+    redis:
+        image: redis
+        hostname: myredis
+        ports:
+            - "6379:6379"
+        depends_on:
+            - database
+
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        environment:
+            ZOOKEEPER_SERVER_ID: 1
+            ZOOKEEPER_CLIENT_PORT: 2181
+        ports:
+            - "2181:2181"
+
+    kafka-service:
+        container_name: kafka-service
+        image: confluentinc/cp-kafka:latest
+        depends_on:
+            - zookeeper
+        ports:
+            - "9092:9092"  # IPv4 포트
+            - "19092:19092"
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+            KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-service:9092,EXTERNAL://localhost:19092
+            KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+            KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+    payment-application:
+        container_name: payment_application
+        build:
+            context: ./
+            dockerfile: Dockerfile-payment
+        env_file:
+            - .env
+        ports:
+            - "8083:8083"
+        environment:
+            SPRING_DATASOURCE_URL: ${DATABASE_URL}
+            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
+            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
+        command: bash -c "
+            java -jar -Dspring.profiles.active=local-payment ./payment-application/build/libs/payment-application.jar
+            "
+        depends_on:
+            - database
+            - redis
+            - kafka-service
+
+    order-application:
+        container_name: order_application
+        build:
+            context: ./
+            dockerfile: Dockerfile-order
+        env_file:
+            - .env
+        ports:
+            - "8082:8082"
+        environment:
+            SPRING_DATASOURCE_URL: ${DATABASE_URL}
+            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
+            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
+        command: bash -c "
+            java -jar -Dspring.profiles.active=local-order ./order-application/build/libs/order-application.jar
+            "
+        depends_on:
+            - database
+            - redis
+            - kafka-service
+
     product-application:
         container_name: product_application
         build:
@@ -31,45 +106,8 @@ services:
             java -jar -Dspring.profiles.active=local ./product-application/build/libs/product-application.jar
             "
         depends_on:
-            -   database
-
-    order-application:
-        container_name: order_application
-        build:
-            context: ./
-            dockerfile: Dockerfile-order
-        env_file:
-            - .env
-        ports:
-            - "8082:8082"
-        environment:
-            SPRING_DATASOURCE_URL: ${DATABASE_URL}
-            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
-            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
-        command: bash -c "
-            java -jar -Dspring.profiles.active=local ./order-application/build/libs/order-application.jar
-            "
-        depends_on:
             - database
-
-    payment-application:
-        container_name: payment_application
-        build:
-            context: ./
-            dockerfile: Dockerfile-payment
-        env_file:
-            - .env
-        ports:
-            - "8083:8083"
-        environment:
-            SPRING_DATASOURCE_URL: ${DATABASE_URL}
-            SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
-            SPRING_DATASOURCE_PASSWORD": ${DATABASE_PASSWORD}
-        command: bash -c "
-            java -jar -Dspring.profiles.active=local ./payment-application/build/libs/payment-application.jar
-            "
-        depends_on:
-            - database
+            - redis
 
     customer-application:
         container_name: customer_application
@@ -89,3 +127,4 @@ services:
             "
         depends_on:
             - database
+            - redis

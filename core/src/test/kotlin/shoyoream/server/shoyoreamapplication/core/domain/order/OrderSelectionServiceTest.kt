@@ -19,10 +19,12 @@ class OrderSelectionServiceTest : BehaviorSpec({
     Given("특정 주문이 있는 경우") {
         val existsOrderId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
+        val buyerId = 1L
         val expectedOrder = Order.of(
             orderId = existsOrderId,
             goodsId = goodsId,
-            stocksId = UUID.randomUUID()
+            stocksId = UUID.randomUUID(),
+            buyerId = buyerId
         )
 
         every {
