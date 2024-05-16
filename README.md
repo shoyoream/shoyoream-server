@@ -13,7 +13,7 @@ Etc Library - <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-s
 <br>
 
 #### 추가 예정
-<img src="https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=Grafana&logoColor=white"/></a> <img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=Prometheus&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=Grafana&logoColor=white"/></a> <img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=Prometheus&logoColor=white"/></a> <img src="https://img.shields.io/badge/Netflix DGS-E50914?style=flat-square&logo=Netflix&logoColor=white"/></a>
 
 <br>
 
