@@ -19,6 +19,12 @@ spring:
         consumer:
             bootstrap-servers: kafka-service:9092
             group-id: group-1
+#            value-deserializer: org.springframework.kafka.support.serializer.ByteArrayDeserializer
+#            properties:
+#                spring:
+#                    json:
+#                        trusted:
+#                            packages: '*'
     jpa:
         generate-ddl: true
         hibernate:
