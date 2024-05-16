@@ -9,6 +9,7 @@ import shoyoream.server.shoyoreamapplication.application.client.service.PayClien
 import shoyoream.server.shoyoreamapplication.application.dto.PayRequest
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.OrderStatus
+import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentOrderTopics
 
 @Service
 class PayAppService(
@@ -24,7 +25,7 @@ class PayAppService(
             .setUpdatedStatus(OrderStatus.PAYMENT_COMPLETED.name)
             .build()
 
-        paymentProducerTemplate.send("order-status", UUID.randomUUID().toString(), orderStatusMessage.toByteArray())
+        paymentProducerTemplate.send(PaymentOrderTopics.ORDER_STATUS, UUID.randomUUID().toString(), orderStatusMessage.toByteArray())
         return DefaultResponse.uuidResponse(UUID.randomUUID())
     }
 }
