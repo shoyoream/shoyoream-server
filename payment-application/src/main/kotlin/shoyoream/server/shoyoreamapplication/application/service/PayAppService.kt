@@ -24,19 +24,14 @@ class PayAppService(
     fun pay(payRequest: PayRequest): DefaultResponse<UUID> {
         // TODO : PayType 에 따라 결제 분기처리 하기
         // TODO : 결제 완료시에 해당 order 정보 업데이트 보내기
-//        val orderStatusMessage = PaymentMessage.PaymentSuccessMessage.newBuilder()
-//            .setOrderId(payRequest.orderId.toString())
-//            .setUpdatedStatus(OrderStatus.PAYMENT_COMPLETED.name)
-//            .build()
-
-        val t = PaymentSuccessMessage(
-            orderId = payRequest.orderId.toString(),
-            updatedStatus = OrderStatus.PAYMENT_COMPLETED.name
+        val paymentSuccessMessage = ProtoBuf.encodeToByteArray(
+            PaymentSuccessMessage(
+                orderId = payRequest.orderId.toString(),
+                updatedStatus = OrderStatus.PAYMENT_COMPLETED.name
+            )
         )
 
-        val bytes = ProtoBuf.encodeToByteArray(t)
-
-        paymentProducerTemplate.send(PaymentOrderTopics.ORDER_STATUS, UUID.randomUUID().toString(), bytes)
+        paymentProducerTemplate.send(PaymentOrderTopics.ORDER_STATUS, UUID.randomUUID().toString(), paymentSuccessMessage)
         return DefaultResponse.uuidResponse(UUID.randomUUID())
     }
 }
