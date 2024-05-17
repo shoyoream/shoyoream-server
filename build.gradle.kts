@@ -12,6 +12,8 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "11.3.2"
     id("org.jlleitschuh.gradle.ktlint-idea") version "11.3.2"
 
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
+
     jacoco
 }
 
@@ -19,6 +21,9 @@ allprojects {
     repositories {
         mavenCentral()
         maven("https://jitpack.io")
+        gradlePluginPortal()
+
+        apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
     }
 }
 
@@ -149,6 +154,8 @@ subprojects {
 
         implementation("org.springframework.kafka:spring-kafka")
         implementation("org.apache.kafka:kafka-clients:2.5.0")
+
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.6.3")
 
         implementation("org.hibernate:hibernate-core:6.2.4.Final")
 
