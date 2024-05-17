@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package payments.protobuf;
-
-message PaymentSuccessMessage {
-    string order_id = 1;
-    string updated_status = 2;
-}

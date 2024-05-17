@@ -1,31 +1,42 @@
 package shoyoream.server.shoyoreamapplication.application.service
 
 import java.util.UUID
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.encodeToByteArray
+import kotlinx.serialization.protobuf.ProtoBuf
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import payments.protobuf.PaymentMessage
 import shoyoream.server.shoyoreamapplication.application.client.service.PayClientStrategyService
 import shoyoream.server.shoyoreamapplication.application.dto.PayRequest
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.OrderStatus
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentOrderTopics
+import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentSuccessMessage
 
 @Service
 class PayAppService(
     private val payClientStrategyService: PayClientStrategyService,
     private val paymentProducerTemplate: KafkaTemplate<String, Any>
 ) {
+    @OptIn(ExperimentalSerializationApi::class)
     @Transactional
     fun pay(payRequest: PayRequest): DefaultResponse<UUID> {
         // TODO : PayType 에 따라 결제 분기처리 하기
         // TODO : 결제 완료시에 해당 order 정보 업데이트 보내기
-        val orderStatusMessage = PaymentMessage.PaymentSuccessMessage.newBuilder()
-            .setOrderId(payRequest.orderId.toString())
-            .setUpdatedStatus(OrderStatus.PAYMENT_COMPLETED.name)
-            .build()
+//        val orderStatusMessage = PaymentMessage.PaymentSuccessMessage.newBuilder()
+//            .setOrderId(payRequest.orderId.toString())
+//            .setUpdatedStatus(OrderStatus.PAYMENT_COMPLETED.name)
+//            .build()
 
-        paymentProducerTemplate.send(PaymentOrderTopics.ORDER_STATUS, UUID.randomUUID().toString(), orderStatusMessage.toByteArray())
+        val t = PaymentSuccessMessage(
+            orderId = payRequest.orderId.toString(),
+            updatedStatus = OrderStatus.PAYMENT_COMPLETED.name
+        )
+
+        val bytes = ProtoBuf.encodeToByteArray(t)
+
+        paymentProducerTemplate.send(PaymentOrderTopics.ORDER_STATUS, UUID.randomUUID().toString(), bytes)
         return DefaultResponse.uuidResponse(UUID.randomUUID())
     }
 }
