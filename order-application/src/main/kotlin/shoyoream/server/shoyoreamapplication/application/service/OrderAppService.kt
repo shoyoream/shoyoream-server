@@ -4,6 +4,7 @@ import java.util.UUID
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.application.dto.OrderRequestDTO
+import shoyoream.server.shoyoreamapplication.core.common.aop.annotation.DistributedLock
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Order
@@ -23,7 +24,7 @@ class OrderAppService(
         return DefaultResponse.uuidResponse(targetOrder.id)
     }
 
-    @Transactional
+    @DistributedLock(key = "#orderInput.goodsId")
     fun registerOrder(orderInput: OrderRequestDTO.OrderInput): DefaultResponse<UUID> {
         val newOrder = orderDomainService.createOrder(
             Order.of(
