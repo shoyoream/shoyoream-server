@@ -7,4 +7,6 @@ import org.springframework.graphql.data.GraphQlRepository
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Order
 
 @GraphQlRepository
-interface OrderRepository : JpaRepository<Order, UUID>, KotlinJdslJpqlExecutor
+interface OrderRepository : JpaRepository<Order, UUID>, KotlinJdslJpqlExecutor {
+    fun countOrdersByStocksId(stocksId: UUID): Long
+}
