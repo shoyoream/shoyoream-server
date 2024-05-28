@@ -6,6 +6,8 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
 import java.util.*
 import org.hibernate.annotations.GenericGenerator
@@ -25,10 +27,9 @@ class Order(
     @Column(name = "goods_id")
     val goodsId: UUID,
 
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(name = "stocks_id")
-    val stocksId: UUID,
+    @OneToOne
+    @JoinColumn(name = "stocks_id")
+    val stocks: Stocks,
 
     @Enumerated(EnumType.STRING)
     var orderStatus: OrderStatus = OrderStatus.ORDERED,
@@ -40,13 +41,13 @@ class Order(
         fun of(
             orderId: UUID,
             goodsId: UUID,
-            stocksId: UUID,
+            stocks: Stocks,
             buyerId: Long
         ): Order {
             return Order(
                 id = orderId,
                 goodsId = goodsId,
-                stocksId = stocksId,
+                stocks = stocks,
                 buyerId = buyerId
             )
         }

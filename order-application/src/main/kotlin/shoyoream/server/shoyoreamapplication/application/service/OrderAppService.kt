@@ -4,15 +4,19 @@ import java.util.UUID
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.application.dto.OrderRequestDTO
+import shoyoream.server.shoyoreamapplication.core.common.aop.annotation.DistributedLock
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
+import shoyoream.server.shoyoreamapplication.core.common.exception.InvalidRequestException
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Order
 import shoyoream.server.shoyoreamapplication.core.domain.order.exception.OrderErrorType
 import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderDomainService
 import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderSelectionService
+import shoyoream.server.shoyoreamapplication.core.domain.order.service.StocksSelectionService
 
 @Service
 class OrderAppService(
+    private val stocksSelectionService: StocksSelectionService,
     private val orderSelectionService: OrderSelectionService,
     private val orderDomainService: OrderDomainService
 ) {
@@ -23,13 +27,20 @@ class OrderAppService(
         return DefaultResponse.uuidResponse(targetOrder.id)
     }
 
-    @Transactional
+    @DistributedLock(key = "#orderInput.stocksId")
     fun registerOrder(orderInput: OrderRequestDTO.OrderInput): DefaultResponse<UUID> {
+        val targetStocks = stocksSelectionService.findStocksById(orderInput.stocksId)
+            ?: throw DataNotFoundException(OrderErrorType.NOT_FOUND_STOCKS)
+
+        if (orderSelectionService.countOrdersByStocksId(orderInput.stocksId) > 0) {
+            throw InvalidRequestException(OrderErrorType.ALREADY_IN_ORDER)
+        }
+
         val newOrder = orderDomainService.createOrder(
             Order.of(
                 orderId = UUID.randomUUID(),
                 goodsId = orderInput.goodsId,
-                stocksId = orderInput.stocksId,
+                stocks = targetStocks,
                 buyerId = orderInput.buyerId
             )
         )

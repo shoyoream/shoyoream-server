@@ -149,6 +149,8 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-data-redis")
         implementation("org.springframework.session:spring-session-data-redis")
 
+        implementation("org.redisson:redisson-spring-boot-starter:3.18.0")
+
         implementation("org.springframework.boot:spring-boot-starter-security")
         testImplementation("org.springframework.security:spring-security-test")
 

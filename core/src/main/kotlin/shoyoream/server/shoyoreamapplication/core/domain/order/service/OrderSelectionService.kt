@@ -21,4 +21,8 @@ class OrderSelectionService(
             )
         }
     }
+
+    fun countOrdersByStocksId(stocksId: UUID): Long {
+        return orderRepository.countOrdersByStocksId(stocksId)
+    }
 }

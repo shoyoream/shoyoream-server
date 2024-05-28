@@ -7,6 +7,7 @@ import io.mockk.mockk
 import java.util.*
 import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Order
+import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Stocks
 import shoyoream.server.shoyoreamapplication.core.domain.order.repository.OrderRepository
 import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
@@ -17,13 +18,15 @@ class OrderSelectionServiceTest : BehaviorSpec({
     val orderSelectionService = OrderSelectionService(orderRepository)
 
     Given("특정 주문이 있는 경우") {
+        val mockStock = mockk<Stocks>()
+
         val existsOrderId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
         val buyerId = 1L
         val expectedOrder = Order.of(
             orderId = existsOrderId,
             goodsId = goodsId,
-            stocksId = UUID.randomUUID(),
+            stocks = mockStock,
             buyerId = buyerId
         )
 

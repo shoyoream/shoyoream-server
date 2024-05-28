@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Order
+import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Stocks
 import shoyoream.server.shoyoreamapplication.core.domain.order.repository.OrderRepository
 import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderDomainService
 
@@ -20,13 +21,13 @@ class OrderUnitTest : StringSpec({
     "주문을 생성한다" {
         val orderId = UUID.randomUUID()
         val goodsId = UUID.randomUUID()
-        val stocksId = UUID.randomUUID()
+        val mockStock = mockk<Stocks>()
         val buyerId = 1L
 
         val newOrder = Order.of(
             orderId = orderId,
             goodsId = goodsId,
-            stocksId = stocksId,
+            stocks = mockStock,
             buyerId = buyerId
         )
 
@@ -36,7 +37,7 @@ class OrderUnitTest : StringSpec({
             val order = Order.of(
                 orderId = orderId,
                 goodsId = goodsId,
-                stocksId = stocksId,
+                stocks = mockStock,
                 buyerId = buyerId
             )
             orderDomainService.createOrder(order)
