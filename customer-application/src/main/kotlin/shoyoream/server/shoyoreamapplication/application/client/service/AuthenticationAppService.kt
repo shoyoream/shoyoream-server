@@ -28,6 +28,7 @@ class AuthenticationAppService(
 ) {
     fun login(loginInput: LoginInput, request: HttpServletRequest): DefaultResponse<Long> {
         // 세선 생성
+
         val session = request.session
 
         val customer = customerSelectionService.findCustomerForLogin(loginInput.email, loginInput.password)

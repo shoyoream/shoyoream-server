@@ -3,18 +3,18 @@ package shoyoream.server.shoyoreamapplication.core.common.constant
 import java.util.UUID
 
 class DefaultResponse<T>(
-    val data: Any
+    val id: Any
 ) {
     companion object {
         fun <T> uuidResponse(id: UUID): DefaultResponse<T> {
             return DefaultResponse(
-                data = id
+                id = id
             )
         }
 
         fun <T> successResponse(id: Long): DefaultResponse<T> {
             return DefaultResponse(
-                data = id
+                id = id
             )
         }
     }

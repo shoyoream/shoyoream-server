@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
 import org.springframework.data.redis.core.index.Indexed
 
-@RedisHash("refresh-token", timeToLive = 30L)
+@RedisHash("refresh-token", timeToLive = 86400L)
 class RefreshToken(
     @Id
     val refreshToken: String,
