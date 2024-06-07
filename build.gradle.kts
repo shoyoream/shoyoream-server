@@ -178,6 +178,8 @@ subprojects {
         testImplementation("io.kotest:kotest-property:$kotestVersion")
         // kotest-extension-spring
         testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
+
+        implementation("io.netty:netty-resolver-dns-native-macos:4.1.68.Final:osx-aarch_64")
     }
 
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {

@@ -1,6 +1,8 @@
 package shoyoream.server.shoyoreamapplication.application.client.service
 
 import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
+import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Service
 import shoyoream.server.shoyoreamapplication.application.dto.LoginInput
 import shoyoream.server.shoyoreamapplication.application.dto.RegisterUserInput
@@ -26,8 +28,9 @@ class AuthenticationAppService(
     private val customerDomainService: CustomerDomainService,
     private val customerSelectionService: CustomerSelectionService
 ) {
-    fun login(loginInput: LoginInput, request: HttpServletRequest): DefaultResponse<Long> {
+    fun login(loginInput: LoginInput, request: HttpServletRequest, response: HttpServletResponse): DefaultResponse<Long> {
         // 세선 생성
+
         val session = request.session
 
         val customer = customerSelectionService.findCustomerForLogin(loginInput.email, loginInput.password)
@@ -36,6 +39,9 @@ class AuthenticationAppService(
         session.maxInactiveInterval = 60 * 60
 
         val refreshToken = jwtProvider.generateToken(customer.customerId.toInt(), customer.email, TokenType.REFRESH)
+        val accessToken = jwtProvider.generateToken(customer.customerId.toInt(), customer.email, TokenType.ACCESS)
+
+        response.addHeader(HttpHeaders.AUTHORIZATION, "Bearer $accessToken")
 
         val existingToken = refreshTokenRepository.findByEmail(customer.email)
 

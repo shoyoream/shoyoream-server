@@ -22,7 +22,9 @@ class AuthenticationResolver(
         @Argument loginInput: LoginInput
     ): DefaultResponse<Long> {
         val request = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes).request
-        return authenticationAppService.login(loginInput, request)
+        val response = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes).response!!
+
+        return authenticationAppService.login(loginInput, request, response)
     }
 
     @MutationMapping
