@@ -6,10 +6,10 @@ import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.application.dto.StockRequestDTO
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
-import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Stocks
-import shoyoream.server.shoyoreamapplication.core.domain.order.exception.StocksErrorType
-import shoyoream.server.shoyoreamapplication.core.domain.order.service.StocksDomainService
-import shoyoream.server.shoyoreamapplication.core.domain.order.service.StocksSelectionService
+import shoyoream.server.shoyoreamapplication.domain.entity.Stocks
+import shoyoream.server.shoyoreamapplication.domain.exception.StocksErrorType
+import shoyoream.server.shoyoreamapplication.domain.service.StocksDomainService
+import shoyoream.server.shoyoreamapplication.domain.service.StocksSelectionService
 
 @Service
 class StockAppService(

@@ -8,11 +8,11 @@ import shoyoream.server.shoyoreamapplication.core.common.aop.annotation.Distribu
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
 import shoyoream.server.shoyoreamapplication.core.common.exception.InvalidRequestException
-import shoyoream.server.shoyoreamapplication.core.domain.order.entity.Order
-import shoyoream.server.shoyoreamapplication.core.domain.order.exception.OrderErrorType
-import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderDomainService
-import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderSelectionService
-import shoyoream.server.shoyoreamapplication.core.domain.order.service.StocksSelectionService
+import shoyoream.server.shoyoreamapplication.domain.entity.Order
+import shoyoream.server.shoyoreamapplication.domain.exception.OrderErrorType
+import shoyoream.server.shoyoreamapplication.domain.service.OrderDomainService
+import shoyoream.server.shoyoreamapplication.domain.service.OrderSelectionService
+import shoyoream.server.shoyoreamapplication.domain.service.StocksSelectionService
 
 @Service
 class OrderAppService(

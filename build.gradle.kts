@@ -61,8 +61,8 @@ subprojects {
         val excludes = listOf(
             "shoyoream/server/shoyoreamapplication/core/infra/**",
             "shoyoream/server/shoyoreamapplication/core/common/**",
-            "shoyoream/server/shoyoreamapplication/core/domain/**/exception/**",
-            "shoyoream/server/shoyoreamapplication/core/domain/**/repository/**"
+            "shoyoream/server/shoyoreamapplication/domain/**/exception/**",
+            "shoyoream/server/shoyoreamapplication/domain/**/repository/**"
         )
 
         classDirectories.setFrom(

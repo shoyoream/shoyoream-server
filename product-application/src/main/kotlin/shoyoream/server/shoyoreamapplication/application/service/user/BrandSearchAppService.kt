@@ -7,8 +7,8 @@ import shoyoream.server.shoyoreamapplication.application.config.ProductCacheConf
 import shoyoream.server.shoyoreamapplication.application.dto.BrandResponseDTO
 import shoyoream.server.shoyoreamapplication.application.dto.BrandResponseDTO.BrandResponse.Companion.ofResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
-import shoyoream.server.shoyoreamapplication.core.domain.product.brand.exception.BrandErrorType
-import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandSelectionService
+import shoyoream.server.shoyoreamapplication.domain.brand.exception.BrandErrorType
+import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandSelectionService
 
 @Service
 class BrandSearchAppService(

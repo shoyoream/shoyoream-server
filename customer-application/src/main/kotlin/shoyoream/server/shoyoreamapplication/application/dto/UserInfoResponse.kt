@@ -1,6 +1,6 @@
 package shoyoream.server.shoyoreamapplication.application.dto
 
-import shoyoream.server.shoyoreamapplication.core.domain.customer.entity.Customer
+import shoyoream.server.shoyoreamapplication.domain.entity.Customer
 
 data class UserInfoResponse(
     val id: Long,
