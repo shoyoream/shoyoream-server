@@ -3,7 +3,7 @@ package shoyoream.server.shoyoreamapplication.application.dto
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.io.Serializable
 import java.util.UUID
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.entity.Goods
+import shoyoream.server.shoyoreamapplication.domain.goods.entity.Goods
 
 class GoodsResponseDTO {
     data class GoodsResponse(

@@ -8,8 +8,8 @@ import shoyoream.server.shoyoreamapplication.application.config.ProductCacheConf
 import shoyoream.server.shoyoreamapplication.application.dto.GoodsResponseDTO
 import shoyoream.server.shoyoreamapplication.application.dto.GoodsResponseDTO.GoodsResponse.Companion.of
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.exception.GoodsErrorType
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsSelectionService
+import shoyoream.server.shoyoreamapplication.domain.goods.exception.GoodsErrorType
+import shoyoream.server.shoyoreamapplication.domain.goods.service.GoodsSelectionService
 
 @Service
 class GoodsSearchAppService(

@@ -10,9 +10,9 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
-import shoyoream.server.shoyoreamapplication.core.domain.order.entity.OrderStatus
-import shoyoream.server.shoyoreamapplication.core.domain.order.exception.OrderErrorType
-import shoyoream.server.shoyoreamapplication.core.domain.order.service.OrderSelectionService
+import shoyoream.server.shoyoreamapplication.core.domain.enums.OrderStatus
+import shoyoream.server.shoyoreamapplication.domain.exception.OrderErrorType
+import shoyoream.server.shoyoreamapplication.domain.service.OrderSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentOrderTopics
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentSuccessMessage
 

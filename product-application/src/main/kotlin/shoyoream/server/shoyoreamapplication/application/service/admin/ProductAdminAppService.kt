@@ -6,10 +6,10 @@ import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.application.dto.BrandRequestDTO
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
-import shoyoream.server.shoyoreamapplication.core.domain.product.brand.exception.BrandErrorType
-import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandDomainService
-import shoyoream.server.shoyoreamapplication.core.domain.product.brand.service.BrandSelectionService
-import shoyoream.server.shoyoreamapplication.core.domain.product.goods.service.GoodsDomainService
+import shoyoream.server.shoyoreamapplication.domain.brand.exception.BrandErrorType
+import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandDomainService
+import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandSelectionService
+import shoyoream.server.shoyoreamapplication.domain.goods.service.GoodsDomainService
 
 @Service
 class ProductAdminAppService(

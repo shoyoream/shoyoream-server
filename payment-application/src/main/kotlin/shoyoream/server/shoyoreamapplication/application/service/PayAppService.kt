@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.application.client.service.PayClientStrategyService
 import shoyoream.server.shoyoreamapplication.application.dto.PayRequest
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
-import shoyoream.server.shoyoreamapplication.core.domain.order.entity.OrderStatus
+import shoyoream.server.shoyoreamapplication.core.domain.enums.OrderStatus
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentOrderTopics
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentSuccessMessage
 
