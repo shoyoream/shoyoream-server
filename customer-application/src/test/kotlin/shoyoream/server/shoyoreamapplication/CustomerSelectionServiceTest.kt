@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.domain.customer
+package shoyoream.server.shoyoreamapplication
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
@@ -7,11 +7,11 @@ import io.mockk.every
 import io.mockk.mockk
 import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
-import shoyoream.server.shoyoreamapplication.core.domain.customer.entity.Customer
-import shoyoream.server.shoyoreamapplication.core.domain.customer.exception.CustomerErrorType
-import shoyoream.server.shoyoreamapplication.core.domain.customer.repository.CustomerRepository
-import shoyoream.server.shoyoreamapplication.core.domain.customer.service.CustomerSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
+import shoyoream.server.shoyoreamapplication.domain.entity.Customer
+import shoyoream.server.shoyoreamapplication.domain.exception.CustomerErrorType
+import shoyoream.server.shoyoreamapplication.domain.repository.CustomerRepository
+import shoyoream.server.shoyoreamapplication.domain.service.CustomerSelectionService
 
 @SpringBootTest
 class CustomerSelectionServiceTest : BehaviorSpec({

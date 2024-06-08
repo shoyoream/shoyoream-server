@@ -9,9 +9,9 @@ import shoyoream.server.shoyoreamapplication.application.dto.RegisterUserInput
 import shoyoream.server.shoyoreamapplication.application.dto.UserInfoResponse
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.InvalidRequestException
-import shoyoream.server.shoyoreamapplication.core.domain.customer.entity.Customer
-import shoyoream.server.shoyoreamapplication.core.domain.customer.service.CustomerDomainService
-import shoyoream.server.shoyoreamapplication.core.domain.customer.service.CustomerSelectionService
+import shoyoream.server.shoyoreamapplication.domain.entity.Customer
+import shoyoream.server.shoyoreamapplication.domain.service.CustomerDomainService
+import shoyoream.server.shoyoreamapplication.domain.service.CustomerSelectionService
 import shoyoream.server.shoyoreamapplication.exception.AuthenticationErrorType
 import shoyoream.server.shoyoreamapplication.token.component.JWTProvider
 import shoyoream.server.shoyoreamapplication.token.component.JWTValidator

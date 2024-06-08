@@ -1,9 +1,9 @@
-package shoyoream.server.shoyoreamapplication.core.domain.customer.service
+package shoyoream.server.shoyoreamapplication.domain.service
 
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
-import shoyoream.server.shoyoreamapplication.core.domain.customer.entity.Customer
-import shoyoream.server.shoyoreamapplication.core.domain.customer.repository.CustomerRepository
+import shoyoream.server.shoyoreamapplication.domain.entity.Customer
+import shoyoream.server.shoyoreamapplication.domain.repository.CustomerRepository
 
 @Service
 class CustomerDomainService(

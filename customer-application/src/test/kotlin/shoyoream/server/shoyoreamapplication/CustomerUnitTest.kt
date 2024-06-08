@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.domain.customer
+package shoyoream.server.shoyoreamapplication
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -7,9 +7,9 @@ import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.springframework.boot.test.context.SpringBootTest
-import shoyoream.server.shoyoreamapplication.core.domain.customer.entity.Customer
-import shoyoream.server.shoyoreamapplication.core.domain.customer.repository.CustomerRepository
-import shoyoream.server.shoyoreamapplication.core.domain.customer.service.CustomerDomainService
+import shoyoream.server.shoyoreamapplication.domain.entity.Customer
+import shoyoream.server.shoyoreamapplication.domain.repository.CustomerRepository
+import shoyoream.server.shoyoreamapplication.domain.service.CustomerDomainService
 
 @SpringBootTest
 class CustomerUnitTest : StringSpec({

@@ -1,4 +1,4 @@
-package shoyoream.server.shoyoreamapplication.core.domain.customer.entity
+package shoyoream.server.shoyoreamapplication.domain.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
