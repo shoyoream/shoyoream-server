@@ -11,13 +11,30 @@ class PaymentProperty(
 ) {
     data class KakaoPay(
         val authentication: Authentication,
-        val host: Host
-    )
+        val host: Host,
+        val endpoint: Endpoint
+    ) {
+        data class Endpoint(
+            val requestAccessToken: String
+        )
+
+        data class Authentication(
+            val clientId: String,
+            val clientSecret: String,
+            val secretKey: String,
+            val secretKeyDev: String
+        )
+    }
 
     data class NaverPay(
         val authentication: Authentication,
         val host: Host
-    )
+    ) {
+        data class Authentication(
+            val accessKey: String,
+            val secretKey: String
+        )
+    }
 
     data class TossPayments(
         val authentication: Authentication,
@@ -27,12 +44,12 @@ class PaymentProperty(
         data class Endpoint(
             val approve: String
         )
-    }
 
-    data class Authentication(
-        val accessKey: String,
-        val secretKey: String
-    )
+        data class Authentication(
+            val accessKey: String,
+            val secretKey: String
+        )
+    }
 
     data class Host(
         val url: String

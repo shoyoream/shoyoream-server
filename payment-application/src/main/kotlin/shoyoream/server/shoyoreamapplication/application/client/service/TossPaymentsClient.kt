@@ -12,7 +12,7 @@ import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.P
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayResponse
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.request.TossPaymentsApproveRequest
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.response.TossPaymentsCommonObject
-import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.response.TossPaymentsErrorResponse
+import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.errorr.TossPaymentsErrorResponse
 import shoyoream.server.shoyoreamapplication.application.exception.PayException
 import shoyoream.server.shoyoreamapplication.core.common.utils.Base64UtilFunctions
 import shoyoream.server.shoyoreamapplication.application.client.http.model.property.PaymentProperty

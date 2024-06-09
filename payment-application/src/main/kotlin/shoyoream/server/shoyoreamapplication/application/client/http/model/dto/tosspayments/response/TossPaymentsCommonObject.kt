@@ -2,6 +2,7 @@ package shoyoream.server.shoyoreamapplication.application.client.http.model.dto.
 
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.PayResponse
 import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.TossPaymentsEnums
+import shoyoream.server.shoyoreamapplication.application.client.http.model.dto.tosspayments.errorr.TossPaymentsErrorResponse
 
 data class TossPaymentsCommonObject(
     val version: String,
