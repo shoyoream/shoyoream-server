@@ -1,10 +1,14 @@
 pay:
     kakao-pay:
         authentication:
-            access-key: ''
-            secret-key: ''
+            client-id: ${kakao-pay-client-id}
+            client-secret: ${kakao-pay-client-secret}
+            secret-key: ${kakao-pay-secret-key}
+            secret-key-dev: ${kakao-pay-secret-key-dev}
         host:
             url: https://open-api.kakaopay.com
+        endpoint:
+            request-access-token: /oauth/token
     naver-pay:
         authentication:
             access-key: ''

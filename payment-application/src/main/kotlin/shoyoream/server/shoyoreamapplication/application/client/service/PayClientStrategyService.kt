@@ -8,11 +8,7 @@ import shoyoream.server.shoyoreamapplication.application.client.http.model.enume
 class PayClientStrategyService(
     services: Set<PayClient>
 ) {
-    private val clientService: Map<PayGateway, PayClient>
-
-    init {
-        this.clientService = createGateway(services)
-    }
+    private val clientService: Map<PayGateway, PayClient> = createGateway(services)
 
     fun findPayClientByPayGateway(payGateway: PayGateway): PayClient {
         return clientService[payGateway]

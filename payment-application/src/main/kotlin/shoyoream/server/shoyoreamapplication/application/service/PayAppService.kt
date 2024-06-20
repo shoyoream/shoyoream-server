@@ -7,6 +7,7 @@ import kotlinx.serialization.protobuf.ProtoBuf
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import shoyoream.server.shoyoreamapplication.application.client.http.model.enumerations.PayGateway
 import shoyoream.server.shoyoreamapplication.application.client.service.PayClientStrategyService
 import shoyoream.server.shoyoreamapplication.application.dto.PayRequest
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
@@ -23,7 +24,8 @@ class PayAppService(
     @Transactional
     fun pay(payRequest: PayRequest): DefaultResponse<UUID> {
         // TODO : PayType 에 따라 결제 분기처리 하기
-        // TODO : 결제 완료시에 해당 order 정보 업데이트 보내기
+        val payClient = payClientStrategyService.findPayClientByPayGateway(PayGateway.valueOf(payRequest.payType.name))
+
         val paymentSuccessMessage = ProtoBuf.encodeToByteArray(
             PaymentSuccessMessage(
                 orderId = payRequest.orderId.toString(),

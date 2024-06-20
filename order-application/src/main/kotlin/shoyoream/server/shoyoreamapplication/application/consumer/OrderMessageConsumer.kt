@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundException
 import shoyoream.server.shoyoreamapplication.core.domain.enums.OrderStatus
+import shoyoream.server.shoyoreamapplication.core.infra.model.ListenerNameFactory
 import shoyoream.server.shoyoreamapplication.domain.exception.OrderErrorType
 import shoyoream.server.shoyoreamapplication.domain.service.OrderSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.model.PaymentOrderTopics
@@ -22,7 +23,7 @@ class OrderMessageConsumer(
 ) {
     @OptIn(ExperimentalSerializationApi::class)
     @Transactional
-    @KafkaListener(topics = [PaymentOrderTopics.ORDER_STATUS], containerFactory = "orderListenerContainerFactory")
+    @KafkaListener(topics = [PaymentOrderTopics.ORDER_STATUS], containerFactory = ListenerNameFactory.ORDER_LISTENER)
     fun listenOrderStatus(message: ConsumerRecord<String, Any>) {
         try {
             val paymentSuccessMessage = ProtoBuf.decodeFromByteArray<PaymentSuccessMessage>(message.value() as ByteArray)

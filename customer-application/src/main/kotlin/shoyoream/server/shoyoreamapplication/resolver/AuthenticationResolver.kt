@@ -9,7 +9,7 @@ import org.springframework.web.context.request.ServletRequestAttributes
 import shoyoream.server.shoyoreamapplication.application.client.service.AuthenticationAppService
 import shoyoream.server.shoyoreamapplication.application.dto.LoginInput
 import shoyoream.server.shoyoreamapplication.application.dto.RegisterUserInput
-import shoyoream.server.shoyoreamapplication.application.dto.UserInfoResponse
+import shoyoream.server.shoyoreamapplication.application.dto.UserInfo
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.token.model.TokenVariable.ACCESS_TOKEN
 
@@ -35,7 +35,7 @@ class AuthenticationResolver(
     }
 
     @QueryMapping
-    fun getUserInfoBySession(): UserInfoResponse {
+    fun getUserInfoBySession(): UserInfo {
         val request = (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes).request
         val session = request.session
         val accessToken = session.getAttribute(ACCESS_TOKEN) as String

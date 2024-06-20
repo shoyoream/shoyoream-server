@@ -6,7 +6,7 @@ import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Service
 import shoyoream.server.shoyoreamapplication.application.dto.LoginInput
 import shoyoream.server.shoyoreamapplication.application.dto.RegisterUserInput
-import shoyoream.server.shoyoreamapplication.application.dto.UserInfoResponse
+import shoyoream.server.shoyoreamapplication.application.dto.UserInfo
 import shoyoream.server.shoyoreamapplication.core.common.constant.DefaultResponse
 import shoyoream.server.shoyoreamapplication.core.common.exception.InvalidRequestException
 import shoyoream.server.shoyoreamapplication.domain.entity.Customer
@@ -64,7 +64,7 @@ class AuthenticationAppService(
         return DefaultResponse.successResponse(newCustomer.customerId)
     }
 
-    fun getUserInfo(accessToken: String): UserInfoResponse {
+    fun getUserInfo(accessToken: String): UserInfo {
         val userIdAndEmail = if (jwtValidator.validateToken(accessToken, TokenType.ACCESS)) {
             jwtProvider.getUserIdAndEmailFromAccessToken(accessToken)
         } else {
@@ -72,6 +72,6 @@ class AuthenticationAppService(
         }
 
         val customer = customerSelectionService.findCustomerById(userIdAndEmail.first.toLong())
-        return UserInfoResponse.of(customer)
+        return UserInfo.of(customer)
     }
 }
