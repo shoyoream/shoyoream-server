@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.domain.entity.Order
 import shoyoream.server.shoyoreamapplication.domain.entity.Stocks
 import shoyoream.server.shoyoreamapplication.domain.repository.OrderRepository
-import shoyoream.server.shoyoreamapplication.domain.service.OrderSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
+import shoyoream.server.shoyoreamapplication.domain.service.OrderSelectionServiceImpl
 
 @SpringBootTest
 class OrderSelectionServiceTest : BehaviorSpec({
     val orderRepository: OrderRepository = mockk(relaxed = true)
-    val orderSelectionService = OrderSelectionService(orderRepository)
+    val orderSelectionService = OrderSelectionServiceImpl(orderRepository)
 
     Given("특정 주문이 있는 경우") {
         val mockStock = mockk<Stocks>()

@@ -10,13 +10,17 @@ import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundE
 import shoyoream.server.shoyoreamapplication.domain.brand.exception.BrandErrorType
 import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandSelectionService
 
+interface BrandSearchAppService {
+    fun findBrandByBrandName(brandName: String): BrandResponseDTO.BrandResponse
+}
+
 @Service
-class BrandSearchAppService(
+class BrandSearchAppServiceImpl(
     private val brandSelectionService: BrandSelectionService
-) {
+) : BrandSearchAppService {
     @Cacheable(cacheNames = [BRAND_CACHE_NAME], key = "#brandName")
     @Transactional(readOnly = true)
-    fun findBrandByBrandName(brandName: String): BrandResponseDTO.BrandResponse {
+    override fun findBrandByBrandName(brandName: String): BrandResponseDTO.BrandResponse {
         val targetBrand = brandSelectionService.findBrandByBrandName(brandName)
             ?: throw DataNotFoundException(BrandErrorType.NOT_FOUND_BRAND)
 

@@ -8,11 +8,21 @@ import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.domain.goods.repository.GoodsRepository
 import java.util.*
 
-@Service
-class GoodsDomainService(
-    private val goodsRepository: GoodsRepository
-) {
+interface GoodsDomainService {
     fun createNewGoods(
+        goodsName: String,
+        goodsCode: String,
+        goodsType: GoodsType,
+        goodsSize: GoodsSize,
+        brand: Brand
+    ): Goods
+}
+
+@Service
+class GoodsDomainServiceImpl(
+    private val goodsRepository: GoodsRepository
+) : GoodsDomainService {
+    override fun createNewGoods(
         goodsName: String,
         goodsCode: String,
         goodsType: GoodsType,

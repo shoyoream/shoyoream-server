@@ -5,12 +5,16 @@ import org.springframework.transaction.annotation.Transactional
 import shoyoream.server.shoyoreamapplication.domain.entity.Order
 import shoyoream.server.shoyoreamapplication.domain.repository.OrderRepository
 
+interface OrderDomainService {
+    fun createOrder(order: Order): Order
+}
+
 @Service
-class OrderDomainService(
+class OrderDomainServiceImpl(
     private val orderRepository: OrderRepository
-) {
+) : OrderDomainService {
     @Transactional
-    fun createOrder(order: Order): Order {
+    override fun createOrder(order: Order): Order {
         return orderRepository.save(order)
     }
 }

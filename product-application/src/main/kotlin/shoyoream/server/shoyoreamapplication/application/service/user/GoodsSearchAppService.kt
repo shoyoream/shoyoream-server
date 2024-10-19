@@ -11,13 +11,17 @@ import shoyoream.server.shoyoreamapplication.core.common.exception.DataNotFoundE
 import shoyoream.server.shoyoreamapplication.domain.goods.exception.GoodsErrorType
 import shoyoream.server.shoyoreamapplication.domain.goods.service.GoodsSelectionService
 
+interface GoodsSearchAppService {
+    fun findGoodsByGoodsId(goodsId: UUID): GoodsResponseDTO.GoodsResponse
+}
+
 @Service
-class GoodsSearchAppService(
+class GoodsSearchAppServiceImpl(
     private val goodsSelectionService: GoodsSelectionService
-) {
+) : GoodsSearchAppService {
     @Cacheable(cacheNames = [GOODS_CACHE_NAME], key = "#goodsId")
     @Transactional(readOnly = true)
-    fun findGoodsByGoodsId(goodsId: UUID): GoodsResponseDTO.GoodsResponse {
+    override fun findGoodsByGoodsId(goodsId: UUID): GoodsResponseDTO.GoodsResponse {
         val targetGoods = goodsSelectionService.findGoodsByGoodsId(goodsId)
             ?: throw DataNotFoundException(GoodsErrorType.NOT_FOUND_GOODS)
 

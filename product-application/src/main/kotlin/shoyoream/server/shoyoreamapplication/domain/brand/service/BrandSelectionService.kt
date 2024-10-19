@@ -7,12 +7,17 @@ import shoyoream.server.shoyoreamapplication.domain.brand.entity.Brand
 import shoyoream.server.shoyoreamapplication.domain.brand.repository.BrandRepository
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
 
+interface BrandSelectionService {
+    fun findBrandByBrandName(brandName: String): Brand?
+    fun findBrandById(brandId: UUID): Brand?
+}
+
 @Service
-class BrandSelectionService(
+class BrandSelectionServiceImpl(
     private val brandRepository: BrandRepository
-) {
+) : BrandSelectionService {
     @Transactional(readOnly = true)
-    fun findBrandByBrandName(brandName: String): Brand? {
+    override fun findBrandByBrandName(brandName: String): Brand? {
         return brandRepository.findNullableSingle {
             select(
                 entity(Brand::class)
@@ -25,7 +30,7 @@ class BrandSelectionService(
     }
 
     @Transactional
-    fun findBrandById(brandId: UUID): Brand? {
+    override fun findBrandById(brandId: UUID): Brand? {
         return brandRepository.findNullableSingle {
             select(
                 entity(Brand::class)
