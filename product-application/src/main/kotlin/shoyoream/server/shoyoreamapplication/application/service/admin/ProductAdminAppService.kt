@@ -11,14 +11,19 @@ import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandDomainSer
 import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandSelectionService
 import shoyoream.server.shoyoreamapplication.domain.goods.service.GoodsDomainService
 
+interface ProductAdminAppService {
+    fun createNewBrand(brandName: String): DefaultResponse<UUID>
+    fun createNewGoods(goodsInput: BrandRequestDTO.GoodsInput): DefaultResponse<UUID>
+}
+
 @Service
-class ProductAdminAppService(
+class ProductAdminAppServiceImpl(
     private val brandDomainService: BrandDomainService,
     private val goodsDomainService: GoodsDomainService,
     private val brandSelectionService: BrandSelectionService
-) {
+) : ProductAdminAppService {
     @Transactional
-    fun createNewBrand(brandName: String): DefaultResponse<UUID> {
+    override fun createNewBrand(brandName: String): DefaultResponse<UUID> {
         val newBrand = brandDomainService.createNewBrand(brandName)
         return DefaultResponse.uuidResponse(
             id = newBrand.id
@@ -26,7 +31,7 @@ class ProductAdminAppService(
     }
 
     @Transactional
-    fun createNewGoods(
+    override fun createNewGoods(
         goodsInput: BrandRequestDTO.GoodsInput
     ): DefaultResponse<UUID> {
         val targetBrand = brandSelectionService.findBrandById(goodsInput.brandId)
