@@ -11,13 +11,13 @@ import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.domain.entity.Stocks
 import shoyoream.server.shoyoreamapplication.domain.repository.StocksRepository
-import shoyoream.server.shoyoreamapplication.domain.service.StocksSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
+import shoyoream.server.shoyoreamapplication.domain.service.StocksSelectionServiceImpl
 
 @SpringBootTest
 class StocksSelectionServiceTest : BehaviorSpec({
     val stocksRepository: StocksRepository = mockk(relaxed = true)
-    val stocksSelectionService = StocksSelectionService(stocksRepository)
+    val stocksSelectionService = StocksSelectionServiceImpl(stocksRepository)
 
     Given("특정 제품이 있는 경우") {
         val existsStocksId = UUID.randomUUID()

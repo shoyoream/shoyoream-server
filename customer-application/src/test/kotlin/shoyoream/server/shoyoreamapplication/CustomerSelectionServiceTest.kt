@@ -11,12 +11,12 @@ import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableS
 import shoyoream.server.shoyoreamapplication.domain.entity.Customer
 import shoyoream.server.shoyoreamapplication.domain.exception.CustomerErrorType
 import shoyoream.server.shoyoreamapplication.domain.repository.CustomerRepository
-import shoyoream.server.shoyoreamapplication.domain.service.CustomerSelectionService
+import shoyoream.server.shoyoreamapplication.domain.service.CustomerSelectionServiceImpl
 
 @SpringBootTest
 class CustomerSelectionServiceTest : BehaviorSpec({
     val customerRepository: CustomerRepository = mockk(relaxed = true)
-    val customerSelectionService = CustomerSelectionService(customerRepository)
+    val customerSelectionService = CustomerSelectionServiceImpl(customerRepository)
 
     Given("특정 고객이 있는 경우") {
         val email = "example@example.com"

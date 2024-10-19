@@ -9,12 +9,12 @@ import kotlinx.coroutines.withContext
 import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.domain.entity.Customer
 import shoyoream.server.shoyoreamapplication.domain.repository.CustomerRepository
-import shoyoream.server.shoyoreamapplication.domain.service.CustomerDomainService
+import shoyoream.server.shoyoreamapplication.domain.service.CustomerDomainServiceImpl
 
 @SpringBootTest
 class CustomerUnitTest : StringSpec({
     val customerRepository: CustomerRepository = mockk(relaxed = true)
-    val customerDomainService = CustomerDomainService(customerRepository)
+    val customerDomainService = CustomerDomainServiceImpl(customerRepository)
 
     "회원가입을 한다." {
         val email = "moonpiderman@gmail.com"

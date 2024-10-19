@@ -9,14 +9,14 @@ import kotlinx.coroutines.withContext
 import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.domain.brand.entity.Brand
 import shoyoream.server.shoyoreamapplication.domain.brand.repository.BrandRepository
-import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandSelectionService
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
+import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandSelectionServiceImpl
 import java.util.UUID
 
 @SpringBootTest
 class BrandSelectionServiceTest : BehaviorSpec({
     val brandRepository: BrandRepository = mockk(relaxed = true)
-    val brandSelectionService = BrandSelectionService(brandRepository)
+    val brandSelectionService = BrandSelectionServiceImpl(brandRepository)
 
     Given("특정 브랜드가 있는 경우") {
         val existBrandName = "Exist Brand"

@@ -11,12 +11,12 @@ import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.domain.entity.Stocks
 import shoyoream.server.shoyoreamapplication.domain.repository.StocksRepository
-import shoyoream.server.shoyoreamapplication.domain.service.StocksDomainService
+import shoyoream.server.shoyoreamapplication.domain.service.StocksDomainServiceImpl
 
 @SpringBootTest
 class StocksUnitTest : StringSpec({
     val stocksRepository: StocksRepository = mockk(relaxed = true)
-    val stocksDomainService = StocksDomainService(stocksRepository)
+    val stocksDomainService = StocksDomainServiceImpl(stocksRepository)
 
     "Stocks을 (내 제품을) 올린다." {
         val uploaderId = 1L
