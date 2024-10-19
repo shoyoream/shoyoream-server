@@ -238,6 +238,12 @@ project(":payment-application") {
     }
 }
 
+project(":coupon-application") {
+    tasks.bootJar {
+        archiveFileName.set("coupon-application.jar")
+    }
+}
+
 val jar: Jar by tasks
 val bootJar: BootJar by tasks
 
