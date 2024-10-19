@@ -8,12 +8,17 @@ import shoyoream.server.shoyoreamapplication.domain.entity.Customer
 import shoyoream.server.shoyoreamapplication.domain.exception.CustomerErrorType
 import shoyoream.server.shoyoreamapplication.domain.repository.CustomerRepository
 
+interface CustomerSelectionService {
+    fun findCustomerForLogin(email: String, encodedPassword: String): Customer
+    fun findCustomerById(id: Long): Customer
+}
+
 @Service
-class CustomerSelectionService(
+class CustomerSelectionServiceImpl(
     private val customerRepository: CustomerRepository
-) {
+) : CustomerSelectionService {
     @Transactional(readOnly = true)
-    fun findCustomerForLogin(email: String, encodedPassword: String): Customer {
+    override fun findCustomerForLogin(email: String, encodedPassword: String): Customer {
         return customerRepository.findNullableSingle {
             select(
                 entity(Customer::class)
@@ -27,7 +32,7 @@ class CustomerSelectionService(
     }
 
     @Transactional(readOnly = true)
-    fun findCustomerById(id: Long): Customer {
+    override fun findCustomerById(id: Long): Customer {
         return customerRepository.findNullableSingle {
             select(
                 entity(Customer::class)

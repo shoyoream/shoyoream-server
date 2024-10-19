@@ -12,13 +12,13 @@ import shoyoream.server.shoyoreamapplication.domain.goods.entity.Goods
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsSize
 import shoyoream.server.shoyoreamapplication.core.domain.enums.GoodsType
 import shoyoream.server.shoyoreamapplication.domain.goods.repository.GoodsRepository
-import shoyoream.server.shoyoreamapplication.domain.goods.service.GoodsDomainService
+import shoyoream.server.shoyoreamapplication.domain.goods.service.GoodsDomainServiceImpl
 import java.util.UUID
 
 @SpringBootTest
 class GoodsUnitTest : StringSpec({
     val goodsRepository: GoodsRepository = mockk(relaxed = true)
-    val goodsDomainService = GoodsDomainService(goodsRepository)
+    val goodsDomainService = GoodsDomainServiceImpl(goodsRepository)
 
     "새 상품을 브랜드와 같이 넣으면 새로운 상품이 생성된다." {
         val goodsId = UUID.randomUUID()

@@ -5,12 +5,16 @@ import org.springframework.stereotype.Service
 import shoyoream.server.shoyoreamapplication.domain.entity.Customer
 import shoyoream.server.shoyoreamapplication.domain.repository.CustomerRepository
 
+interface CustomerDomainService {
+    fun createCustomer(customer: Customer): Customer
+}
+
 @Service
-class CustomerDomainService(
+class CustomerDomainServiceImpl(
     private val customerRepository: CustomerRepository
-) {
+) : CustomerDomainService {
     @Transactional
-    fun createCustomer(customer: Customer): Customer {
+    override fun createCustomer(customer: Customer): Customer {
         return customerRepository.save(customer)
     }
 }

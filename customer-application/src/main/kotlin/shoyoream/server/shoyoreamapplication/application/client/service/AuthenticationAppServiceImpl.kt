@@ -20,15 +20,21 @@ import shoyoream.server.shoyoreamapplication.token.model.TokenVariable.ACCESS_TO
 import shoyoream.server.shoyoreamapplication.token.model.enums.TokenType
 import shoyoream.server.shoyoreamapplication.token.repository.RefreshTokenRepository
 
+interface AuthenticationAppService {
+    fun login(loginInput: LoginInput, request: HttpServletRequest, response: HttpServletResponse): DefaultResponse<Long>
+    fun registerCustomer(registerUserInput: RegisterUserInput): DefaultResponse<Long>
+    fun getUserInfo(accessToken: String): UserInfo
+}
+
 @Service
-class AuthenticationAppService(
+class AuthenticationAppServiceImpl(
     private val jwtValidator: JWTValidator,
     private val jwtProvider: JWTProvider,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val customerDomainService: CustomerDomainService,
     private val customerSelectionService: CustomerSelectionService
-) {
-    fun login(loginInput: LoginInput, request: HttpServletRequest, response: HttpServletResponse): DefaultResponse<Long> {
+) : AuthenticationAppService {
+    override fun login(loginInput: LoginInput, request: HttpServletRequest, response: HttpServletResponse): DefaultResponse<Long> {
         // 세선 생성
 
         val session = request.session
@@ -56,7 +62,7 @@ class AuthenticationAppService(
         return DefaultResponse.successResponse(customer.customerId)
     }
 
-    fun registerCustomer(registerUserInput: RegisterUserInput): DefaultResponse<Long> {
+    override fun registerCustomer(registerUserInput: RegisterUserInput): DefaultResponse<Long> {
         val newCustomer = customerDomainService.createCustomer(
             Customer.of(registerUserInput.email, registerUserInput.password)
         )
@@ -64,7 +70,7 @@ class AuthenticationAppService(
         return DefaultResponse.successResponse(newCustomer.customerId)
     }
 
-    fun getUserInfo(accessToken: String): UserInfo {
+    override fun getUserInfo(accessToken: String): UserInfo {
         val userIdAndEmail = if (jwtValidator.validateToken(accessToken, TokenType.ACCESS)) {
             jwtProvider.getUserIdAndEmailFromAccessToken(accessToken)
         } else {

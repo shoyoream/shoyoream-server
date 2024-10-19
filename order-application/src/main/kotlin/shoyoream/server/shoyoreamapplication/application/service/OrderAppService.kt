@@ -14,21 +14,26 @@ import shoyoream.server.shoyoreamapplication.domain.service.OrderDomainService
 import shoyoream.server.shoyoreamapplication.domain.service.OrderSelectionService
 import shoyoream.server.shoyoreamapplication.domain.service.StocksSelectionService
 
+interface OrderAppService {
+    fun getOrder(orderId: UUID): DefaultResponse<UUID>
+    fun registerOrder(orderInput: OrderRequestDTO.OrderInput): DefaultResponse<UUID>
+}
+
 @Service
-class OrderAppService(
+class OrderAppServiceImpl(
     private val stocksSelectionService: StocksSelectionService,
     private val orderSelectionService: OrderSelectionService,
     private val orderDomainService: OrderDomainService
-) {
+) : OrderAppService {
     @Transactional(readOnly = true)
-    fun getOrder(orderId: UUID): DefaultResponse<UUID> {
+    override fun getOrder(orderId: UUID): DefaultResponse<UUID> {
         val targetOrder = orderSelectionService.findOrderById(orderId)
             ?: throw DataNotFoundException(OrderErrorType.NOT_FOUND_ORDER)
         return DefaultResponse.uuidResponse(targetOrder.id)
     }
 
     @DistributedLock(key = "#orderInput.stocksId")
-    fun registerOrder(orderInput: OrderRequestDTO.OrderInput): DefaultResponse<UUID> {
+    override fun registerOrder(orderInput: OrderRequestDTO.OrderInput): DefaultResponse<UUID> {
         val targetStocks = stocksSelectionService.findStocksById(orderInput.stocksId)
             ?: throw DataNotFoundException(OrderErrorType.NOT_FOUND_STOCKS)
 

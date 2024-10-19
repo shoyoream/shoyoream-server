@@ -6,11 +6,16 @@ import shoyoream.server.shoyoreamapplication.domain.entity.Order
 import shoyoream.server.shoyoreamapplication.domain.repository.OrderRepository
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
 
+interface OrderSelectionService {
+    fun findOrderById(orderId: UUID): Order?
+    fun countOrdersByStocksId(stocksId: UUID): Long
+}
+
 @Service
-class OrderSelectionService(
+class OrderSelectionServiceImpl(
     private val orderRepository: OrderRepository
-) {
-    fun findOrderById(orderId: UUID): Order? {
+) : OrderSelectionService {
+    override fun findOrderById(orderId: UUID): Order? {
         return orderRepository.findNullableSingle {
             select(
                 entity(Order::class)
@@ -22,7 +27,7 @@ class OrderSelectionService(
         }
     }
 
-    fun countOrdersByStocksId(stocksId: UUID): Long {
+    override fun countOrdersByStocksId(stocksId: UUID): Long {
         return orderRepository.countOrdersByStocksId(stocksId)
     }
 }

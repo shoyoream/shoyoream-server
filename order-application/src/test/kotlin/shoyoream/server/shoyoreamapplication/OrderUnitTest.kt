@@ -11,12 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.domain.entity.Order
 import shoyoream.server.shoyoreamapplication.domain.entity.Stocks
 import shoyoream.server.shoyoreamapplication.domain.repository.OrderRepository
-import shoyoream.server.shoyoreamapplication.domain.service.OrderDomainService
+import shoyoream.server.shoyoreamapplication.domain.service.OrderDomainServiceImpl
 
 @SpringBootTest
 class OrderUnitTest : StringSpec({
     val orderRepository: OrderRepository = mockk(relaxed = true)
-    val orderDomainService = OrderDomainService(orderRepository)
+    val orderDomainService = OrderDomainServiceImpl(orderRepository)
 
     "주문을 생성한다" {
         val orderId = UUID.randomUUID()

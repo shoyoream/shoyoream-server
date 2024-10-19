@@ -9,13 +9,13 @@ import kotlinx.coroutines.withContext
 import org.springframework.boot.test.context.SpringBootTest
 import shoyoream.server.shoyoreamapplication.domain.brand.entity.Brand
 import shoyoream.server.shoyoreamapplication.domain.brand.repository.BrandRepository
-import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandDomainService
+import shoyoream.server.shoyoreamapplication.domain.brand.service.BrandDomainServiceImpl
 import java.util.UUID
 
 @SpringBootTest
 class BrandUnitTest : StringSpec({
     val brandRepository: BrandRepository = mockk(relaxed = true)
-    val brandDomainService = BrandDomainService(brandRepository)
+    val brandDomainService = BrandDomainServiceImpl(brandRepository)
 
     "브랜드 이름을 넣으면 새로운 브랜드가 생성된다." {
         val newBrandName = "Test Brand Name"

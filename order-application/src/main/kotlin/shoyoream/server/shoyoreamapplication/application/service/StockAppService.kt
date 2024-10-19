@@ -11,13 +11,18 @@ import shoyoream.server.shoyoreamapplication.domain.exception.StocksErrorType
 import shoyoream.server.shoyoreamapplication.domain.service.StocksDomainService
 import shoyoream.server.shoyoreamapplication.domain.service.StocksSelectionService
 
+interface StockAppService {
+    fun registerStock(stockInput: StockRequestDTO.StockInput): DefaultResponse<UUID>
+    fun getStocks(stockId: UUID): DefaultResponse<UUID>
+}
+
 @Service
-class StockAppService(
+class StockAppServiceImpl(
     private val stocksDomainService: StocksDomainService,
     private val stocksSelectionService: StocksSelectionService
-) {
+) : StockAppService {
     @Transactional
-    fun registerStock(stockInput: StockRequestDTO.StockInput): DefaultResponse<UUID> {
+    override fun registerStock(stockInput: StockRequestDTO.StockInput): DefaultResponse<UUID> {
         val newStocks = stocksDomainService.createStocks(
             Stocks.of(
                 stocksId = UUID.randomUUID(),
@@ -32,7 +37,7 @@ class StockAppService(
     }
 
     @Transactional(readOnly = true)
-    fun getStocks(stockId: UUID): DefaultResponse<UUID> {
+    override fun getStocks(stockId: UUID): DefaultResponse<UUID> {
         val targetStocks = stocksSelectionService.findStocksById(stockId)
             ?: throw DataNotFoundException(StocksErrorType.NOT_FOUND_STOCKS)
         return DefaultResponse.uuidResponse(targetStocks.id)

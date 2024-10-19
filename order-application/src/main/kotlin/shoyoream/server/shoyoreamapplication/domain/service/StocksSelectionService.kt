@@ -6,11 +6,15 @@ import shoyoream.server.shoyoreamapplication.domain.entity.Stocks
 import shoyoream.server.shoyoreamapplication.domain.repository.StocksRepository
 import shoyoream.server.shoyoreamapplication.core.infra.extensions.findNullableSingle
 
+interface StocksSelectionService {
+    fun findStocksById(stocksId: UUID): Stocks?
+}
+
 @Service
-class StocksSelectionService(
+class StocksSelectionServiceImpl(
     private val stocksRepository: StocksRepository
-) {
-    fun findStocksById(stocksId: UUID): Stocks? {
+) : StocksSelectionService {
+    override fun findStocksById(stocksId: UUID): Stocks? {
         return stocksRepository.findNullableSingle {
             select(
                 entity(Stocks::class)

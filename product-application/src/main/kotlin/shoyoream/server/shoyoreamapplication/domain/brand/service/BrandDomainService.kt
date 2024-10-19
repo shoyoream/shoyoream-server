@@ -6,12 +6,16 @@ import shoyoream.server.shoyoreamapplication.domain.brand.entity.Brand
 import shoyoream.server.shoyoreamapplication.domain.brand.repository.BrandRepository
 import java.util.*
 
+interface BrandDomainService {
+    fun createNewBrand(brandName: String): Brand
+}
+
 @Service
-class BrandDomainService(
+class BrandDomainServiceImpl(
     private val brandRepository: BrandRepository
-) {
+) : BrandDomainService {
     @Transactional
-    fun createNewBrand(brandName: String): Brand {
+    override fun createNewBrand(brandName: String): Brand {
         return brandRepository.save(
             Brand.of(
                 brandId = UUID.randomUUID(),
